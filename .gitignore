@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/venv,python,django,pycharm
-# Edit at https://www.gitignore.io/?templates=venv,python,django,pycharm
+# Created by https://www.gitignore.io/api/python,django,pycharm,virtualenv
+# Edit at https://www.gitignore.io/?templates=python,django,pycharm,virtualenv
 
 ### Django ###
 *.log
@@ -258,7 +258,7 @@ fabric.properties
 ### Python Patch ###
 .venv/
 
-### venv ###
+### VirtualEnv ###
 # Virtualenv
 # http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
 [Bb]in
@@ -270,4 +270,5 @@ fabric.properties
 pyvenv.cfg
 pip-selfcheck.json
 
-# End of https://www.gitignore.io/api/venv,python,django,pycharm
+# End of https://www.gitignore.io/api/python,django,pycharm,virtualenv
+
