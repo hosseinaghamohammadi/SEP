@@ -20,7 +20,7 @@ def sign_in_workseeker(request):
 def sign_in_employer(request):
     type = "Employer"
     attr = "employer"
-    page = 'workseeker page'
+    page = 'employer page'
 
     return sign_in(request, type, attr, page)
 
@@ -45,11 +45,12 @@ def sign_in(request, type, attr, page):
             'error_message': "{} with this username or password does not exists".format(type),
         })
     object = getattr(user, attr)
-    return HttpResponseRedirect(reverse(page ,args=(workseeker,)))
+    return HttpResponseRedirect(reverse(page ,args=(object.id,)))
 
 
-def work_seeker(request):
+def work_seeker(request, workseeker_id):
     return HttpResponse("Workseeker fucking page")
 
 
-
+def employer(request, employer_id):
+    return HttpResponse("Employer fucking page")

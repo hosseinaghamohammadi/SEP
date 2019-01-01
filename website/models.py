@@ -12,8 +12,9 @@ class User(models.Model):
 
 
 class WorkSeeker(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200,default="dummy")
     family_name = models.CharField(max_length=200,default="dummy")
     studentID = models.CharField(max_length=8,default="95109253")
@@ -44,8 +45,9 @@ class CV(models.Model):
 
 
 class Employer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    id = models.AutoField(primary_key=True)
     companyName = models.CharField(max_length=200,default="dummy")
     companyAddress = models.CharField(max_length=400,default="dummy")
     companyWebsite = models.URLField(default="google.com")

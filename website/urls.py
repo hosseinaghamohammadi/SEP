@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.first_page, name='first_page'),
     path('SignInWorkseeker/', views.sign_in_workseeker, name='Workseeker Sign In'),
     path('SignInEmployer/', views.sign_in_employer, name='Employer Sign In'),
-    path('workSeeker/', views.work_seeker, name='workseeker page'),
+    path('<int:workseeker_id>/workSeeker/', views.work_seeker, name='workseeker page'),
+    path('<int:employer_id>/employer/', views.employer, name='employer page'),
 ]
