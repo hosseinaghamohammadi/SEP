@@ -48,4 +48,5 @@ def work_seeker(request):
     return HttpResponse("Workseeker fucking page")
 
 
-
+def edit_profile(request):
+    return render(request, 'website/editPofile.html')
