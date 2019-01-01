@@ -40,17 +40,41 @@
     <tr>
         <th scope="row" align="middle"></th>
         <td align="middle">
-          <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+
+            <!-- Button trigger sign in modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signIn">
               Sign In
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h5 class="modal-title" id="signInTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#employerSignIn">Employer</button>
+                      <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#workseekerSignIn">Workseeker</button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!-- #############################################################################################################################-->
+          <!-- Employer Sign In modal -->
+            <div class="modal fade" id="employerSignIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="employerSignInTitle">Employer Sign In</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -68,12 +92,40 @@
                         <input type="text" name="password" value="password" id="username">
                         <label for="password"> "password" </label><br>
 
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    <input type="submit" value="Sign In">
+
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+<!-- #############################################################################################################################-->
+            <!-- Work Seeker Sign In modal -->
+            <div class="modal fade" id="workseekerSignIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="workseekerSignInTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <form action="{% url 'Sign In' %}" method="post">
+                    {% csrf_token %}
+
+                  <div class="modal-body">
 
 
+                        <input type="text" name="username" id="username">
+                        <label for="username"> "username" </label><br>
 
-
-
-
+                        <input type="text" name="password" value="password" id="username">
+                        <label for="password"> "password" </label><br>
 
                   </div>
                   <div class="modal-footer">
@@ -86,37 +138,115 @@
                 </div>
               </div>
             </div>
+
       </td>
 
-
-
+<!-- #############################################################################################################################-->
+<!-- #############################################################################################################################-->
+<!-- #############################################################################################################################-->
 
       <td align="middle">
-          <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-              Sign Up
+          <!-- Button trigger sign up modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUp">
+              Sign In
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h5 class="modal-title" id="signUpTitle">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    ...
+                    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#employerSignUp">Employer</button>
+                      <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#workseekerSignUp">Workseeker</button>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+
                   </div>
                 </div>
               </div>
-        </div>
+            </div>
+
+<!-- #############################################################################################################################-->
+          <!-- Employer Sign In modal -->
+            <div class="modal fade" id="employerSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="employerSignUpTitle">Employer Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <form action="{% url 'Sign In' %}" method="post">
+                    {% csrf_token %}
+
+                  <div class="modal-body">
+
+
+                        <input type="text" name="username" id="username">
+                        <label for="username"> "username" </label><br>
+
+                        <input type="text" name="password" value="password" id="username">
+                        <label for="password"> "password" </label><br>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    <input type="submit" value="Sign In">
+
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+<!-- #############################################################################################################################-->
+            <!-- Work Seeker Sign In modal -->
+            <div class="modal fade" id="workseekerSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="workseekerSignUpTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                  <form action="{% url 'Sign In' %}" method="post">
+                    {% csrf_token %}
+
+                  <div class="modal-body">
+
+
+                        <input type="text" name="username" id="username">
+                        <label for="username"> "username" </label><br>
+
+                        <input type="text" name="password" value="password" id="username">
+                        <label for="password"> "password" </label><br>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    <input type="submit" value="Sign In">
+
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+
       </td>
     </tr>
 
