@@ -12,11 +12,11 @@ class User(models.Model):
 
 
 class WorkSeeker(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     name = models.CharField(max_length=200,default="dummy")
     family_name = models.CharField(max_length=200,default="dummy")
-    studentID = models.CharField(max_length=8, primary_key=True,default="95109253")
+    studentID = models.CharField(max_length=8,default="95109253")
     nationalID = models.CharField(max_length=10,default="1234567891")
     address = models.CharField(max_length=400,default="dummy")
 
@@ -44,7 +44,7 @@ class CV(models.Model):
 
 
 class Employer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
     companyName = models.CharField(max_length=200,default="dummy")
     companyAddress = models.CharField(max_length=400,default="dummy")

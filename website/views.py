@@ -9,39 +9,43 @@ def first_page(request):
     return render(request, 'website/firstPage.html')
 
 
-def sign_in(request):
+def sign_in_workseeker(request):
+    type = "Work Seeker"
+    attr = "workseeker"
+    page = 'workseeker page'
+
+    return sign_in(request, type, attr, page)
 
 
+def sign_in_employer(request):
+    type = "Employer"
+    attr = "employer"
+    page = 'workseeker page'
+
+    return sign_in(request, type, attr, page)
+
+
+def sign_in(request, type, attr, page):
     username = request.POST['username']
-
-    # except (KeyError, uuser.DoesNotExist):
-    #     # Redisplay the question voting form.
-    #     return render(request, 'website/firstPage.html', {
-    #         'error_message': "This username or password does not exists",
-    #     })
-    if username == "":
-        return render(request, 'website/firstPage.html', {
-                    'error_message': "You have not Entered a password",
-                })
-
-    print(username)
     try:
         user = get_object_or_404(User, pk=username)
     except:
         return render(request, 'website/firstPage.html', {
-                'error_message': "This username or password does not exists user error",
+                'error_message': "{} with this username or password does not exists".format(type),
             })
-
 
     password = request.POST['password']
     if user.password != password:
         return render(request, 'website/firstPage.html', {
-            'error_message': "This username or password does not exists",
+            'error_message': "{} with this username or password does not exists".format(type),
         })
 
-
-
-    return HttpResponseRedirect(reverse('workseeker page'))
+    if not hasattr(user, attr):
+        return render(request, 'website/firstPage.html', {
+            'error_message': "{} with this username or password does not exists".format(type),
+        })
+    object = getattr(user, attr)
+    return HttpResponseRedirect(reverse(page ,args=(workseeker,)))
 
 
 def work_seeker(request):
