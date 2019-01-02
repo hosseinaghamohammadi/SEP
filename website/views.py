@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
@@ -40,7 +40,7 @@ def sign_in(request):
 
 
 def employee(request):
-    return HttpResponse("Workseeker fucking page")
+    return render(request, 'website/employee_profile.html')
 
 
 def edit_profile(request):
