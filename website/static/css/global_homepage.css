@@ -18,7 +18,7 @@ body{
     background-color: white;
     margin-top: -10px;
     padding-bottom: 10px;
-    /*border-bottom: 2px solid #2b5b1d;*/
+
     /*display: flex;*/
     /*position: fixed;*/
 }
@@ -100,42 +100,30 @@ body{
     border-radius: 5%;
     /*transition-duration: 15s;*/
 }
-.navbar-brand{
-    /*width: 40%;*/
-    /*background-color: #0b2e13;*/
+.navbar-brand {
 }
 
-/*#logo{*/
-    /*margin-top: -7%;*/
-    /*width: 40%;*/
-/*}*/
-
-.table > tbody > tr > .table-ROW{
-    border-bottom: 1px solid #6ca05e;
-    padding-right:40px;
-}
-
-.form-container > .edit-container > .form-group > .div-of-form-label{
-    direction: rtl;
-}
 
 @media (min-width: 768px) {
     .big-nav{
         border-bottom: 2px solid #2b5b1d;
     }
-    .nav > li{
+    .nav > li {
         width: auto;
         /*margin-right: -15%;*/
     }
-    #homeButton{
+
+    #homeButton {
         margin-right: 30px;
     }
-    .navbar-header{
+
+    .navbar-header {
         /*float: right;*/
         /*background-color: #337ab7;*/
         /*width: 20%;*/
     }
-    #logo{
+
+    #logo {
         width: 35%;
         margin-top: -2%;
         /*width: 40%;*/
@@ -144,121 +132,74 @@ body{
         /*text-align: center;*/
         /*float: right;*/
     }
-    .navbar-brand{
+
+    .navbar-brand {
         /*width: 100%;*/
         /*margin-right: -10%;*/
         /*float: right;*/
     }
-    #myNavbar{
+
+    #myNavbar {
         /*background-color: aqua;*/
         margin-right: -65px;
         float: right;
         width: 78%;
         margin-top: 40px;
     }
-    .navbar-left > li{
+
+    .navbar-left > li {
         border-radius: 5px;
         height: 42px;
     }
-    .sign-up-button{
+
+    .sign-up-button {
         background-color: #1c7430;
         margin-right: 10px;
         color: white;
     }
-    .log-in-button{
+
+    .log-in-button {
         border: #28a745 1px solid;
     }
-    .navbar-left > li > a{
+
+    .navbar-left > li > a {
         /*margin-top: -15%;*/
         border-radius: 5px;
         height: 42px;
     }
-    .navbar-left > li > a{
+
+    .navbar-left > li > a {
         padding: 10px 10px 10px 10px;
         border-radius: 5px;
         height: 42px;
     }
-    .sign-up-button > a > span{
+
+    .sign-up-button > a > span {
         /*border: #28a745 1px solid;*/
         margin-top: -5%;
         color: white;
     }
-    .log-in-button > a{
+
+    .log-in-button > a {
         padding: 5px 10px 10px 10px;
     }
-    #sign-up-id{
+
+    #sign-up-id {
         color: white;
     }
-    /*.layout-all{*/
-        /*-webkit-column-width: 30vw;*/
-        /*-moz-column-width: 30vw;*/
-        /*column-width: 30vw;*/
-    /*}*/
-    .empty-along-inputs{
-        /*margin: 0 0 0 0;*/
-        /*padding: 0 0 0 0;*/
-        float: left;
-        width: 16.66%;
-        display: block;
+    .carousel-container{
+        width: 60%;
+    }
+    .item{
+        width: 100%;
+        height: 400px;
+    }
+    .item > img{
+        width: 100%;
+        height: 400px;
+
     }
 
-    .form-container{
-        width: 50%;
-        float: left;
-        /*border: 1px solid #1c7430;*/
-        background-color: white;
-        box-shadow: #1c7430 -2px 2px 5px 1px;
-        margin-bottom: 10%;
-        /*background-color: #F0FFEA;*/
-    }
-
-    .form-links{
-        width: 33.33%;
-        float: left;
-    }
-    .edit-container{
-        padding-top: 70px;
-        padding-bottom: 200px;
-    }
-
-    .mail-class > .col-lg-9{
-        padding-left: 100px;
-    }
-    .password-class > .col-lg-9{
-        text-align: right;
-        padding-left: 200px;
-    }
-    .dob-class > .col-lg-9{
-        padding-left: 250px;
-    }
-    .state-class > .col-lg-2{
-        width: 155px;
-        margin-left: 490px;
-    }
-    .name-class > .col-lg-9{
-        padding-left: 100px;
-    }
-    .family-name-class > .col-lg-9{
-        padding-left: 100px;
-    }
-    .edit-button{
-        text-align: left;
-    }
-    .form-container > .edit-container > .form-group > .input-group{
-        padding-left: 30%;
-    }
-    .form-container > .edit-container > .dob-class > .input-group {
-        padding-left: 60%;
-    }
-    .form-container > .edit-container > .password-class > .input-group {
-        padding-left: 60%;
-    }
-    .form-container > .edit-container > .state-class > .form-control {
-        padding-left: 43%;
-    }
-    .form-container > .edit-container > .state-class {
-        padding-left: 50%;
-    }
 }
 @media (max-width: 767px) {
     #myNavbar{
