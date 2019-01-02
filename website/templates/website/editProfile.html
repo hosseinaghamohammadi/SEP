@@ -1,0 +1,208 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>Hossein</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--generated links-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!--Hossein added these links-->
+    <link rel="stylesheet" href="{% static 'css/editProfile.css' %}">
+
+    <style>
+
+    </style>
+
+</head>
+<body>
+{% block content %}
+<nav class="navbar" >
+    <div class="container-fluid">
+        <div class="navbar-header navbar-right">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar" style="background-color: #337ab7"></span>
+                <span class="icon-bar" style="background-color: #337ab7"></span>
+                <span class="icon-bar" style="background-color: #337ab7"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img id="logo" src="{% static 'logo.png' %}"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right" id="rightNavbar">
+                <li class="active" id="homeButton"><a href="#">خانه</a></li>
+                <li class="dropdown dropdown-links">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">صفحه یک<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-buttons"><a href="#">تست یک</a></li>
+                        <li class="dropdown-buttons"><a href="#">تست دو</a></li>
+                        <li class="dropdown-buttons"><a href="#">تست سه</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-links"><a href="#">صفحه دو</a></li>
+                <li class="dropdown-links"><a href="">صفحه سه</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-left" id="leftNavbar" style="text-align: left;">
+                <li class="log-in-button" style=""><a href="#" style=""><span class="glyphicon glyphicon-log-in"></span>   ورود</a></li>
+                <li class="sign-up-button" style=""><a href="#" style="" id="sign-up-id"><span class="glyphicon glyphicon-user"></span> ثبت نام</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+<div class="container col-lg-offset-2 col-lg-6">
+    <!--<h2>Horizontal form</h2>-->
+    <form  action="/action_page.php" class="edit-container">
+        <div class="form-group mail-class" style="text-align: right;">
+            <div><label class="col-sm-2 col-lg-offset-3 col-lg-9" for="email" style="">:رایانامه</label></div>
+            <!--<br>-->
+            <div class="input-group col-sm-10 col-lg-offset-3 col-lg-9" style="">
+                <input type="email" class="form-control" id="email" placeholder="رایانه را وارد کنید" name="email" style="text-align: right; ">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group password-class" style="text-align: right">
+            <div><label class="col-sm-2 col-lg-offset-3 col-lg-9" for="pwd" style="">:گذرواژه‌ی کنونی</label></div>
+
+            <div class="input-group col-sm-10 col-lg-offset-3 col-lg-9" style="">
+                <input type="password" class="form-control" id="pwd" placeholder="‌گذرواژه‌ی کنونی را وارد کنید" name="pwd" style="text-align: right">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group dob-class" style="text-align: right">
+            <div><label class="col-sm-2 col-lg-offset-3 col-lg-9" for="pwd" style="">:تاریخ تولد</label></div>
+
+            <div class="input-group col-sm-10 col-lg-offset-3 col-lg-9" style="">
+                <input type="date" class="form-control" placeholder="‌" name="dob" style="text-align: right; font-family: Tahoma;">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group password-class" style="text-align: right">
+            <div><label class="col-sm-2 col-lg-offset-3 col-lg-9" for="new-pwd" style="">:گذرواژه‌ی جدید</label></div>
+
+            <div class="input-group col-sm-10 col-lg-offset-3 col-lg-9" style="">
+                <input type="password" class="form-control" id="new-pwd" placeholder="‌گذرواژه‌ی جدید را وارد کنید" name="new-pwd" style="text-align: right">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group password-class" style="text-align: right">
+            <div><label class="col-sm-2 col-lg-offset-3 col-lg-9" for="new-pwd-verify" style="">:تکرار گذرواژه‌ی جدید</label></div>
+
+            <div class="input-group col-sm-10 col-lg-offset-3 col-lg-9" style="">
+                <input type="password" class="form-control" id="new-pwd-verify" placeholder="‌گذرواژه‌ی جدید را مجدداً وارد کنید" name="new-pwd-verify" style="text-align: right">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group name-class" style="text-align: right">
+            <div><label class="col-sm-2 col-lg-offset-3 col-lg-9" for="name" style="">:نام</label></div>
+
+            <div class="input-group col-sm-10 col-lg-offset-3 col-lg-9" style="">
+                <input type="text" class="form-control" id="name" placeholder="‌نام خود را وارد کنید" name="name" style="text-align: right">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group family-name-class" style="text-align: right">
+            <div><label class="col-sm-2 col-lg-offset-3 col-lg-9" for="family-name" style="">:نام خانوداگی</label></div>
+
+            <div class="input-group col-sm-10 col-lg-offset-3 col-lg-9" style="">
+                <input type="text" class="form-control" id="family-name" placeholder="‌نام خانوادگی خود را وارد کنید" name="family-name" style="text-align: right">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            </div>
+        </div>
+
+        <br>
+        <div class="form-group state-class" style="text-align: right">
+            <div><label class="col-sm-2 col-lg-offset-3 col-lg-9" for="state" style="">:استان</label></div>
+
+            <select class="form-control col-sm-10 col-lg-offset-3 col-lg-2" style="font-size: small; ">
+                <!--<input type="" class="form-control" id="state" placeholder="‌استان خود را انتخاب کنید" name="state" style="text-align: right">-->
+                <option selected id="state" name="state" style="text-align: right">...</option>
+                <!--<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>-->
+            </select>
+        </div>
+        <!--<div class="form-group">-->
+            <!--<div class="col-sm-offset-2 col-sm-10">-->
+                <!--<div class="checkbox">-->
+                    <!--<label><input type="checkbox" name="remember"> Remember me</label>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="form-group edit-button">
+            <div class="col-sm-10 col-lg-offset-3">
+                <button type="submit" class="btn btn-outline-success">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class=" col-lg-4" style="padding: 80px 0 0 40px;">
+    <h2>
+
+    </h2>
+    <table class="table " style="width: 55%; border: 1px solid #6ca05e;border-collapse: separate; border-radius: 4px; text-align: right">
+        <thead style="">
+        <tr>
+            <th style="text-align: right; border-bottom: 1px solid #6ca05e; padding-right:30px">تنظیمات</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="table-ROW">تغییر نشانی</td>
+        </tr>
+        <tr>
+            <td class="table-ROW"> تغییر گذرواژه</td>
+        </tr>
+        <tr>
+            <td style="padding-right:40px;">تغییر مشخصات</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<script>
+    function widthControlling() {
+        var x = document.getElementById("rightNavbar");
+        var y = x.getElementsByTagName("li");
+        var i;
+        for (i = 0; i < y.length; i++) {
+            y[i].style.marginRight = "2%";
+            y[i].style.width = "96%";
+        }
+        var x = document.getElementById("leftNavbar");
+        var y = x.getElementsByTagName("li");
+        var i;
+        for (i = 0; i < y.length; i++) {
+            y[i].style.marginRight = "2%";
+            y[i].style.width = "96%";
+        }
+        // document.getElementsByClassName("nav")[0].getElementsByTagName("li")[0].style.width = "100%";
+    }
+</script>
+{% endblock %}
+</body>
+</html>

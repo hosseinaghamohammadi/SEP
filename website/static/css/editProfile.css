@@ -1,0 +1,201 @@
+
+@font-face {
+    font-family: irWeb;
+    src: url(../fonts/IRANSansWeb.ttf);
+}
+@font-face {
+    font-family: irWebBold;
+    src: url(../fonts/IRANSansWeb_Bold.ttf);
+}
+body{
+    background-color: #caeac0;
+    font-family: irWeb;
+    color: #2b5b1d;;
+}
+.navbar, .navbar-nav, .navbar-left, .navbar-right{
+    font-family: irWeb;
+}
+
+.navbar-header{
+    height: 100%;
+    /*background-color: #5a6268;*/
+}
+/*.navbar-header button:visited{*/
+    /*transition-duration: 1s;*/
+/*}*/
+
+#myNavbar{
+    height: 100%;
+    /*width: 70%;*/
+    /*background-color: #6f42c1;*/
+    vertical-align: center;
+    margin-top: 15px;
+    font-size: 110%;
+
+}
+
+.navbar {
+    /*margin-top: 10px;*/
+    /*height: 500px;*/
+}
+.container-fluid{
+    /*height: 80px;*/
+}
+
+.nav > li{
+    width: 100%;
+    float: right;
+    text-align: right;
+    /*background-color: inherit;*/
+}
+
+.nav > li > a:hover{
+    font-family: irWebBold;
+    /*background-color: inherit;*/
+    border-radius: 5px;
+    /*margin: 12px 12px 12px 12px;*/
+    transition-duration: 1s;
+    height: 42px;
+}
+.nav > li > a{
+    color: #2b5b1d;
+    background-color: inherit;
+}
+.dropdown-menu > li{
+    margin-right: 3%;
+    width: 94%;
+    float: right;
+    /*text-align: right;*/
+
+}
+
+.dropdown-menu > li > a:hover{
+    border-radius: 4%;
+    background-color: black;
+    transition-duration: 0.5s;
+}
+
+.navbar-nav > li > .dropdown-menu{
+    border-radius: 3px;
+    background-color: #d4f4b5;
+    /*background-color: #000000;*/
+}
+.dropdown-menu li{
+    text-align: right;
+}
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover{
+    background-color: #bee2b3;
+    font-family: irWebBold;
+    border-radius: 5%;
+    /*transition-duration: 15s;*/
+}
+.navbar-brand{
+    /*width: 40%;*/
+    /*background-color: #0b2e13;*/
+}
+
+#logo{
+    margin-top: -7%;
+    width: 40%;
+}
+
+.table > tbody > tr > .table-ROW{
+    border-bottom: 1px solid #6ca05e;
+    padding-right:40px;
+}
+@media (min-width: 768px) {
+    .nav > li{
+        width: auto;
+        /*margin-right: -15%;*/
+    }
+    #homeButton{
+        /*margin-right: -25%;*/
+    }
+    #logo{
+        width: 80%;
+        margin-right: 15px;
+        /*float: right;*/
+    }
+    .navbar-brand{
+        width: 50%;
+        margin-right: 10%;
+        float: right;
+    }
+    #myNavbar{
+        margin-right: -7%;
+        float: right;
+        width: 83%;
+    }
+    .navbar-left > li{
+        border-radius: 5px;
+        height: 42px;
+    }
+    .sign-up-button{
+        background-color: #1c7430;
+        margin-right: 10px;
+        color: white;
+    }
+    .log-in-button{
+        border: #28a745 1px solid;
+    }
+    .navbar-left > li > a{
+        /*margin-top: -15%;*/
+        border-radius: 5px;
+        height: 42px;
+    }
+    .navbar-left > li > a{
+        padding: 10px 10px 10px 10px;
+        border-radius: 5px;
+        height: 42px;
+    }
+    .sign-up-button > a > span{
+        /*border: #28a745 1px solid;*/
+        margin-top: -5%;
+        color: white;
+    }
+    .log-in-button > a{
+        padding: 5px 10px 10px 10px;
+    }
+    #sign-up-id{
+        color: white;
+    }
+    .edit-container{
+        padding-top: 70px;
+        padding-bottom: 200px;
+    }
+
+    .mail-class > .col-lg-9{
+        padding-left: 100px;
+    }
+    .password-class > .col-lg-9{
+        text-align: right;
+        padding-left: 200px;
+    }
+    .dob-class > .col-lg-9{
+        padding-left: 250px;
+    }
+    .state-class > .col-lg-2{
+        width: 155px;
+        margin-left: 490px;
+    }
+    .name-class > .col-lg-9{
+        padding-left: 100px;
+    }
+    .family-name-class > .col-lg-9{
+        padding-left: 100px;
+    }
+    .edit-button{
+        text-align: left;
+    }
+}
+@media (max-width: 767px) {
+    #myNavbar{
+        margin-top: 12%;
+    }
+    #logo{
+        width: 35%;
+        margin-top: -15px;
+        margin-left: -5px;
+        /*float: right;*/
+    }
+}

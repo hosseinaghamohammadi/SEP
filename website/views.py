@@ -49,4 +49,4 @@ def work_seeker(request):
 
 
 def edit_profile(request):
-    return render(request, 'website/editPofile.html')
+    return render(request, 'website/editProfile.html')
