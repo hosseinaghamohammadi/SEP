@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.CharField(default='dummy', max_length=200)),
-                ('jobOffer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='website.JobOffer')),
+                ('jobOffer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='website.EmpOff')),
             ],
         ),
         migrations.CreateModel(
@@ -100,12 +100,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='phone',
             name='workSeeker',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='website.WorkSeeker'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='website.Employee'),
         ),
         migrations.AddField(
             model_name='jobrequest',
             name='workSeeker',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='website.WorkSeeker'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='website.Employee'),
         ),
         migrations.AddField(
             model_name='employer',
@@ -115,6 +115,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cv',
             name='workSeeker',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='website.WorkSeeker'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='website.Employee'),
         ),
     ]
