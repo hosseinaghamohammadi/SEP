@@ -1,0 +1,171 @@
+<!doctype html>
+{% load static %}
+<head>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Dalghak</title>
+    <link rel="stylesheet" href="{% static 'css/employee_profile.css' %}">
+    <!------ Include the above in your HEAD tag ---------->
+    <style>
+        @media (max-width: 576px) {
+            div#vii1 {
+                order: 1;
+            }
+
+            div#vii2 {
+                order: 2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container main-section">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+            <img src="https://www.desktopbackground.org/p/2015/05/26/954182_auroras-wallpapers-archives-page-20-of-27-widewallpaper-info_1920x1080_h.jpg">
+        </div>
+        <div style="margin-top: 10px" class="col">
+            <div class="row">
+                <div id="vii2" class="col-lg-9 col-md-8 col-sm-7 col-xs-12 float-left">
+                    <div style="margin-top: 20px" class="col-12 row profile-left-section">
+                        <div class="col-12 profile-header-section1 float-right text-right">
+                            <h1>سوابق کاری</h1>
+                            <div class="border"></div>
+                        </div>
+                        <div class="col-12 text-right" style="direction: rtl">
+                            <ul>
+                                <li>مدیر محصول، شرکت کوئرا، ۱۳۹۶ - الان</li>
+
+                                <li>شرکت مهسان، ۱۳۹۴ - ۱۳۹۶</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px" class="col-12 row profile-left-section">
+                        <div class="col-12 profile-header-section1 float-right text-right">
+                            <h1>سوابق تحصیلی</h1>
+                            <div class="border"></div>
+                        </div>
+                        <div class="col-12 text-right" style="direction: rtl">
+                            <ul>
+                                <li>دانشگاه صنعتی شریف، مقطع کارشناسی، ۱۳۹۵ - ۱۳۹۹</li>
+
+                                <li>دبیرستان علامه حلی تهران، ۱۳۹۰ - ۱۳۹۵</li>
+                                <li>راهنمای علامه حلی ۱ تهران، ۱۳۸۸ - ۱۳۹۰</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px" class="col-12 row profile-left-section">
+                        <div class="col-12 profile-header-section1 float-right text-right">
+                            <h1>افتخارات</h1>
+                            <div class="border"></div>
+                        </div>
+                        <div class="col-12 text-right" style="direction: rtl">
+                            <ul>
+                                <li>نقره جهانی المپیاد ریاضی، ۲۰۱۵</li>
+                                <li>طلای کشوری المپیاد کامپیوتر، ۱۳۹۴</li>
+                                <li>طلای کشوری المپیاد ریاضی، ۱۳۹۳</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px" class="col-12 row profile-left-section">
+                        <div class="col-12 profile-header-section1 float-right text-right">
+                            <h1>علاقه‌مندی‌ها</h1>
+                            <div class="border"></div>
+                        </div>
+                        <div class="col-12 text-right" style="direction: rtl; font-size: 20px">
+                            <ul class="list-inline">
+                                <li style="margin: 10px" class="list-inline-item"><span class="badge badge-success">بازاریابی</span>
+                                </li>
+                                <li style="margin: 10px" class="list-inline-item"><span class="badge badge-success">آموزش ریاضی</span>
+                                </li>
+                                <li style="margin: 10px" class="list-inline-item"><span class="badge badge-success">حل مسئله</span>
+                                </li>
+                                <li style="margin: 10px" class="list-inline-item"><span class="badge badge-success">رمزنگاری</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="vii1" class="col-lg-3 col-md-4 col-sm-5 col-xs-12 user-profile-part float-right">
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 user-image text-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdF-IXx4Uhtwl7niNPp4Tvz9-6aeCRensRVQLZLJd1ZBnWSx99Aw"
+                                 class="rounded-circle img-fluid img-thumbnail mx-auto" alt="user_img">
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center follow">
+                            <ul class="list-group text-center">
+                                <li class="list-group-item border-success"><b>امین بهجتی</b></li>
+                                <li class="list-group-item border-success small">دانشجوی کارشناسی مهندسی
+                                    کامپیوتر
+                                </li>
+                                <li class="list-group-item border-success small">amin.bahjati@gmail.com
+                                </li>
+                                <li class="list-group-item border-success small">09190066097</li>
+
+                            </ul>
+                            <button id="btn-contact" (click)="clearModal()"
+                                    data-toggle="modal" data-target="#contact"
+                                    style="margin-top: 10px"
+                                    class="btn btn-outline-primary btn-sm btn-block">ارسال پیام
+                            </button>
+
+                            <button class="btn btn-outline-success btn-sm btn-block">دریافت رزومه</button>
+                        </div>
+                        <div class="col user-detail-row float-right" style="width: max-content">
+                            <div class="col-md-12 col-sm-12 user-detail-section2 float-right"
+                                 style="text-align: right">
+                                <div class="border align-baseline"></div>
+                                <p style="direction: rtl">تعداد دیده‌شدن‌ها:</p>
+                                <span>۳۲۰</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contact">Contactarme</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <p for="msj">Se enviará este mensaje a la persona que desea contactar, indicando que te quieres
+                        comunicar con el. Para esto debes de ingresar tu información personal.</p>
+                </div>
+                <div class="form-group">
+                    <label for="txtFullname">Nombre completo</label>
+                    <input type="text" id="txtFullname" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtEmail">Email</label>
+                    <input type="text" id="txtEmail" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtPhone">Teléfono</label>
+                    <input type="text" id="txtPhone" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
