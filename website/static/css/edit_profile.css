@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: irWeb;
     src: url(../fonts/IRANSansWeb.ttf);
@@ -8,9 +7,20 @@
     src: url(../fonts/IRANSansWeb_Bold.ttf);
 }
 body{
-    background-color: #caeac0;
+    /*background-color: #A2F78C;*/
     font-family: irWeb;
     color: #2b5b1d;;
+    background-image: linear-gradient(white, #A2F78C);
+    /*background-image: linear-gradient(#A2F78C, #59BC27);*/
+}
+.big-nav{
+    /*background-image: linear-gradient(#A2F78C, #59BC27);*/
+    background-color: white;
+    margin-top: -10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2b5b1d;
+    /*display: flex;*/
+    /*position: fixed;*/
 }
 .navbar, .navbar-nav, .navbar-left, .navbar-right{
     font-family: irWeb;
@@ -18,6 +28,7 @@ body{
 
 .navbar-header{
     height: 100%;
+    margin-top: 15px;
     /*background-color: #5a6268;*/
 }
 /*.navbar-header button:visited{*/
@@ -94,37 +105,53 @@ body{
     /*background-color: #0b2e13;*/
 }
 
-#logo{
-    margin-top: -7%;
-    width: 40%;
-}
+/*#logo{*/
+    /*margin-top: -7%;*/
+    /*width: 40%;*/
+/*}*/
 
 .table > tbody > tr > .table-ROW{
     border-bottom: 1px solid #6ca05e;
     padding-right:40px;
 }
+
+.form-container > .edit-container > .form-group > .div-of-form-label{
+    direction: rtl;
+}
+
 @media (min-width: 768px) {
     .nav > li{
         width: auto;
         /*margin-right: -15%;*/
     }
     #homeButton{
-        /*margin-right: -25%;*/
+        margin-right: 30px;
+    }
+    .navbar-header{
+        /*float: right;*/
+        /*background-color: #337ab7;*/
+        /*width: 20%;*/
     }
     #logo{
-        width: 80%;
-        margin-right: 15px;
+        width: 35%;
+        margin-top: -2%;
+        /*width: 40%;*/
+        margin-left: 30%;
+        /*margin-right: 20px;*/
+        /*text-align: center;*/
         /*float: right;*/
     }
     .navbar-brand{
-        width: 50%;
-        margin-right: 10%;
-        float: right;
+        /*width: 100%;*/
+        /*margin-right: -10%;*/
+        /*float: right;*/
     }
     #myNavbar{
-        margin-right: -7%;
+        /*background-color: aqua;*/
+        margin-right: -65px;
         float: right;
-        width: 83%;
+        width: 78%;
+        margin-top: 40px;
     }
     .navbar-left > li{
         border-radius: 5px;
@@ -159,6 +186,33 @@ body{
     #sign-up-id{
         color: white;
     }
+    /*.layout-all{*/
+        /*-webkit-column-width: 30vw;*/
+        /*-moz-column-width: 30vw;*/
+        /*column-width: 30vw;*/
+    /*}*/
+    .empty-along-inputs{
+        /*margin: 0 0 0 0;*/
+        /*padding: 0 0 0 0;*/
+        float: left;
+        width: 16.66%;
+        display: block;
+    }
+
+    .form-container{
+        width: 50%;
+        float: left;
+        /*border: 1px solid #1c7430;*/
+        background-color: white;
+        box-shadow: #1c7430 -2px 2px 5px 1px;
+        margin-bottom: 10%;
+        /*background-color: #F0FFEA;*/
+    }
+
+    .form-links{
+        width: 33.33%;
+        float: left;
+    }
     .edit-container{
         padding-top: 70px;
         padding-bottom: 200px;
@@ -186,6 +240,21 @@ body{
     }
     .edit-button{
         text-align: left;
+    }
+    .form-container > .edit-container > .form-group > .input-group{
+        padding-left: 30%;
+    }
+    .form-container > .edit-container > .dob-class > .input-group {
+        padding-left: 60%;
+    }
+    .form-container > .edit-container > .password-class > .input-group {
+        padding-left: 60%;
+    }
+    .form-container > .edit-container > .state-class > .form-control {
+        padding-left: 43%;
+    }
+    .form-container > .edit-container > .state-class {
+        padding-left: 50%;
     }
 }
 @media (max-width: 767px) {
