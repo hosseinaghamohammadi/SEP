@@ -5,7 +5,6 @@ from django.urls import reverse
 from .models import User
 
 
-
 def sign_in(request):
     username = request.POST['username']
 
@@ -46,3 +45,7 @@ def edit_profile(request):
 
 def global_homepage(request):
     return render(request, 'website/global_homepage.html')
+
+
+def employer(request):
+    return render(request, 'website/employer_profile.html')

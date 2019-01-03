@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+
+    <title>Monster Inc.</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <!------ Include the above in your HEAD tag ---------->
+    <style>
+        @media (max-width: 576px) {
+            div#vii1 {
+                order: 1;
+            }
+
+            div#vii2 {
+                order: 2;
+            }
+        }
+    </style>
+    <script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>
+    <script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>
+    <script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
+    <meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
+    <link rel="shortcut icon" type="image/x-icon"
+          href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico"/>
+    <link rel="mask-icon" type=""
+          href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg"
+          color="#111"/>
+    <link rel="canonical" href="https://codepen.io/rozklad/pen/qVObdP"/>
+    <style class="cp-pen-styles">body {
+        background-color: #f3f5f7;
+    }
+
+    .card {
+        background-color: #fff;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 300px;
+        height: 375px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card .about {
+        height: 150px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .card .about h3,
+    .card .about .lead {
+        font-weight: 300;
+        margin: 0;
+    }
+
+    .card .about h3 {
+        font-size: 24px;
+    }
+
+    .card .about .lead {
+        color: #aaa;
+    }
+
+    .tooltip-placeholder {
+        background-color: #fff;
+        border-radius: 4px;
+        font-family: "Iranian Sans" !important;
+        color: #aaa;
+        font-size: 20px;
+        position: fixed;
+        padding: 4px 0;
+        display: none;
+        z-index: 2;
+    }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container main-section">
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+            <img src="https://wpblink.com/sites/default/files/wallpaper/movie/72445/monsters-inc-wallpapers-hd-72445-5946824.png">
+        </div>
+        <div style="margin-top: 10px" class="col">
+            <div class="row">
+                <div id="vii2" class="col-lg-9 col-md-8 col-sm-7 col-xs-12 float-left">
+                    <div class="row">
+                        <div class="col-12">
+                            <div style="margin-top: 20px" class="col-12 row profile-left-section">
+                                <div class="col-12 profile-header-section1 float-right text-right">
+                                    <h1>درباره ما</h1>
+                                    <div class="border"></div>
+                                </div>
+                                <div class="col-12 text-right" style="direction: rtl">
+                                    <p style="text-align: justify ">در سرزمین هیولاها برای تهیه انرژی روش خاصی وجود
+                                        دارد،
+                                        هیولاها با ترساندن بچه‌ها از صدای جیغ آن‌ها انرژی تهیه می‌کنند، البته رئیس
+                                        کارخانه
+                                        به
+                                        هیولاها تلقین کرده که هیچ چیز به اندازه یک کودک خطرناک نیست و حتی یک تماس آن‌ها
+                                        می‌تواند
+                                        باعث مرگ شود. سرانجام روزی یک کودک وارد سرزمین هیولاها می‌شود و همه چیز را به هم
+                                        می‌ریزد
+                                        ولی در این بین سالی و مایک کشف می‌کنند که صدای خنده کودکان انرژی بیشتری تولید
+                                        می‌کند
+                                        و
+                                        روش کار کارخانه به کلی تغییر می‌کند و در آخر سالی رئیس شرکت هیولاها می‌شود.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+
+                            <style>
+                                html {
+                                    box-sizing: border-box;
+                                }
+
+                                *, *:before, *:after {
+                                    box-sizing: inherit;
+                                }
+
+                                .column {
+                                    box-shadow: 0px 0px 0px 0px;
+                                    float: left;
+                                    width: 33.33%;
+                                    margin-bottom: 16px;
+                                    padding: 0 8px;
+                                }
+
+                                .column {
+                                    /*border: 1px solid #f4511e;*/
+                                    /*border-radius:0 !important;*/
+                                    transition: box-shadow 0.5s;
+                                }
+
+                                .column:hover {
+                                    box-shadow: 0px 4px 8px rgba(0, 0, 0, .5);
+                                }
+
+                                @media screen and (max-width: 650px) {
+                                    .column {
+                                        width: 100%;
+                                        display: block;
+                                    }
+                                }
+
+                                .card {
+                                    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+                                    text-align: center;
+                                }
+
+                                .card > img {
+                                    border-radius: 50%;
+                                    /*width: 200px;*/
+                                    /*height: 200px;*/
+                                    width: 70%;
+                                    height: 70%;
+                                }
+
+                                .card > .container1 {
+                                    overflow: auto;
+
+                                }
+
+                                .container1 {
+                                    padding: 0 16px;
+                                }
+
+                                .container1::after, .row::after {
+                                    content: "";
+                                    clear: both;
+                                    display: table;
+                                }
+
+                                .title {
+                                    color: grey;
+                                }
+
+                                .button {
+                                    border: none;
+                                    outline: 0;
+                                    display: inline-block;
+                                    padding: 8px;
+                                    color: white;
+                                    background-color: #000;
+                                    text-align: center;
+                                    cursor: pointer;
+                                    width: 100%;
+                                }
+
+                                .button:hover {
+                                    background-color: #555;
+                                }
+                            </style>
+
+                            <div class="row" style="margin-top: 200px">
+                                <div class="container col-lg-6 col-md-12">
+                                    <div class="column">
+                                        <div class="card container" style="align-items: center">
+                                            <img src="http://icons-for-free.com/free-icons/png/512/532707.png"
+                                                 alt="web developer"
+                                                 style="margin-top: 15px; width: 100px; height: 100px">
+                                            <div class="container1" style="">
+                                                <h2>برنامه‌نویس وب</h2>
+                                                <p class="title">در بخش ویژه مدارس</p>
+                                                <p class="small">شرکت هیولاها برای مدارس قصد دارد محتوای آموزشی آماده
+                                                    کند. لذا نیازمند یک بستر وب مناسب برای اینکار است. و برای همین دست
+                                                    شما را می‌بوسد.</p>
+                                                <p>
+                                                    <button class="button">اطلاعات بیشتر</button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container col-lg-6 col-md-12">
+                                    <div class="column">
+                                        <div class="card container" style="align-items: center">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtbB8DjGnOaABEMw0iYwclfovDkUc8raJ36qBjslO9PsQBjWSS"
+                                                 alt="روابط عمومی"
+                                                 style="margin-top: 15px;width: 100px; height: 100px">
+                                            <div class="container1">
+                                                <h2>ارتباط‌گیر</h2>
+                                                <p class="title">در بخش ارتباط با کودکان</p>
+                                                <p class="small">شرکت هیولاها نیازمند کارشناسی لطیف برای ارتباط‌گیری
+                                                    میدانی با کودکان است تا بتواند بازخورد درستی از اجراهای هیولاها
+                                                    بگیرد و جلب رضایت بنماید.</p>
+                                                <p>
+                                                    <button class="button">اطلاعات بیشتر</button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div style="margin-top: 200px" class="col-12 row profile-left-section">
+                                <div class="col-12 profile-header-section1 float-right text-right">
+                                    <h1>برنامه‌نویس وب</h1>
+                                    <div class="border"></div>
+                                </div>
+                                <div class="col-12 text-right" style="direction: rtl">
+                                    <p style="text-align: justify ">نیازمند برنامه‌نوسی هستیم که شرایط زیر را دارا باشد:</p>
+                                    <ul>
+                                        <li>۲ سال سابقه کار</li>
+                                        <li>متخصص کار با جنگو</li>
+                                        <li>آشنایی با react</li>
+                                        <li>آشنایی با Node.JS</li>
+                                        <li>آشنایی با بوت‌استرپ</li>
+                                        <li>آشنایی با گیت</li>
+                                    </ul>
+                                    <button class="button btn-outline-success">درخواست استخدام</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="vii1" class="col-lg-3 col-md-4 col-sm-5 col-xs-12 user-profile-part float-right">
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 user-image text-center">
+                            <img src="http://online.focusky.com/ndln/npcf/files/extfiles/ext_0201642217399977.png"
+                                 class="rounded-circle img-fluid img-thumbnail mx-auto" alt="user_img">
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center follow">
+
+                            <ul class="list-group text-center">
+                                <li class="list-group-item border-success"><b>شرکت هیولاها</b></li>
+                                <li class="list-group-item border-success small">بهترین شرکت برای سرگرمی کودکان
+                                </li>
+                                <li class="list-group-item border-success small">info@mosterinc.org
+                                </li>
+                                <li class="list-group-item border-success small">021 22334455</li>
+                                <li class="list-group-item border-success small">تهران، خ خرافات، پ ۱۲</li>
+                            </ul>
+                            <div class="border align-baseline"></div>
+                            <div>
+                                <p class="small">نمودار کیفی شرکت هیولاها</p>
+                                <div id="tooltip" class="tooltip-placeholder"></div>
+                                <canvas id="canvas" width="300" height="200"></canvas>
+                                <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+                                <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js'></script>
+                                <script>var canvas = document.getElementById("canvas");
+
+                                var gradientBlue = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+                                gradientBlue.addColorStop(0, 'rgba(85, 85, 255, 0.9)');
+                                gradientBlue.addColorStop(1, 'rgba(151, 135, 255, 0.8)');
+
+                                var gradientHoverBlue = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+                                gradientHoverBlue.addColorStop(0, 'rgba(65, 65, 255, 1)');
+                                gradientHoverBlue.addColorStop(1, 'rgba(131, 125, 255, 1)');
+
+                                var gradientRed = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+                                gradientRed.addColorStop(0, 'rgba(255, 85, 184, 0.9)');
+                                gradientRed.addColorStop(1, 'rgba(255, 135, 135, 0.8)');
+
+                                var gradientHoverRed = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+                                gradientHoverRed.addColorStop(0, 'rgba(255, 65, 164, 1)');
+                                gradientHoverRed.addColorStop(1, 'rgba(255, 115, 115, 1)');
+
+                                var redArea = null;
+                                var blueArea = null;
+
+                                var shadowed = {
+                                    beforeDatasetsDraw: function (chart, options) {
+                                        chart.ctx.shadowColor = 'rgba(0, 0, 0, 0.25)';
+                                        chart.ctx.shadowBlur = 40;
+                                    },
+                                    afterDatasetsDraw: function (chart, options) {
+                                        chart.ctx.shadowColor = 'rgba(0, 0, 0, 0)';
+                                        chart.ctx.shadowBlur = 0;
+                                    }
+                                };
+
+                                Chart.plugins.register({
+                                    afterEvent: function (chart, e) {
+                                        // Hardcoded hover areas
+
+                                        // Red chart
+                                        chart.ctx.beginPath();
+                                        chart.ctx.moveTo(91, 69);
+                                        chart.ctx.lineTo(152, 80);
+                                        chart.ctx.lineTo(192, 75);
+                                        chart.ctx.lineTo(213, 138);
+                                        chart.ctx.lineTo(148, 168);
+                                        chart.ctx.lineTo(105, 126);
+                                        chart.ctx.fill();
+                                        chart.ctx.closePath();
+
+                                        if (chart.ctx.isPointInPath(e.x, e.y)) {
+                                            var dataset = window.chart.data.datasets[0];
+                                            dataset.backgroundColor = gradientHoverRed;
+                                            window.chart.update();
+                                            canvas.style.cursor = 'pointer';
+                                        } else {
+                                            var dataset = window.chart.data.datasets[0];
+                                            dataset.backgroundColor = gradientRed;
+                                            window.chart.update();
+                                            canvas.style.cursor = 'default';
+                                        }
+
+                                        // Blue chart
+                                        chart.ctx.beginPath();
+                                        chart.ctx.moveTo(85, 61);
+                                        chart.ctx.lineTo(149, 66);
+                                        chart.ctx.lineTo(224, 63);
+                                        chart.ctx.lineTo(179, 112);
+                                        chart.ctx.lineTo(152, 177);
+                                        chart.ctx.lineTo(121, 117);
+                                        chart.ctx.fill();
+                                        chart.ctx.closePath();
+
+                                        if (chart.ctx.isPointInPath(e.x, e.y)) {
+                                            var dataset = window.chart.data.datasets[1];
+                                            dataset.backgroundColor = gradientHoverBlue;
+                                            window.chart.update();
+                                            canvas.style.cursor = 'pointer';
+                                        } else {
+                                            var dataset = window.chart.data.datasets[1];
+                                            dataset.backgroundColor = gradientBlue;
+                                            window.chart.update();
+                                            canvas.style.cursor = 'default';
+                                        }
+                                    }
+                                });
+
+                                window.chart = new Chart(document.getElementById("canvas"), {
+                                    type: "radar",
+                                    data: {
+                                        labels: ["مالی", "تکنولوژیک", "چابکی", "نشاط", "فضای دوستانه", "نظم"],
+                                        datasets: [{
+                                            label: "شرکت هیولاها",
+                                            data: [80, 59, 30, 81, 60, 100],
+                                            fill: true,
+                                            backgroundColor: gradientRed,
+                                            borderColor: 'transparent',
+                                            pointBackgroundColor: "transparent",
+                                            pointBorderColor: "transparent",
+                                            pointHoverBackgroundColor: "transparent",
+                                            pointHoverBorderColor: "transparent",
+                                            pointHitRadius: 50,
+                                        }]
+                                    },
+                                    options: {
+                                        legend: {
+                                            display: false,
+                                        },
+                                        tooltips: {
+                                            enabled: false,
+                                            custom: function (tooltip) {
+                                                var tooltipEl = document.getElementById('tooltip');
+                                                if (tooltip.body) {
+                                                    tooltipEl.style.display = 'block';
+                                                    if (tooltip.body[0].lines && tooltip.body[0].lines[0]) {
+                                                        tooltipEl.innerHTML = tooltip.body[0].lines[0];
+                                                    }
+                                                } else {
+                                                    setTimeout(function () {
+                                                        tooltipEl.style.display = 'none';
+                                                    }, 500);
+                                                }
+                                            },
+                                        },
+                                        gridLines: {
+                                            display: false
+                                        },
+                                        scale: {
+                                            ticks: {
+                                                maxTicksLimit: 1,
+                                                display: false,
+                                            }
+                                        }
+                                    },
+                                    plugins: [shadowed]
+                                });
+                                //# sourceURL=pen.js
+                                </script>
+                            </div>
+                            <div style="margin-top: 15px" class="border align-baseline"></div>
+
+                            <button id="btn-contact" (click)="clearModal()"
+                                    data-toggle="modal" data-target="#contact"
+                                    style="margin-top: 10px"
+                                    class="btn btn-outline-primary btn-sm btn-block">ارسال پیام
+                            </button>
+
+                            <button class="btn btn-outline-success btn-sm btn-block">نظردهی</button>
+                        </div>
+                        <div class="col user-detail-row float-right" style="width: max-content">
+                            <div class="col-md-12 col-sm-12 user-detail-section2 float-right"
+                                 style="text-align: right">
+                                <div class="border align-baseline"></div>
+                                <p style="direction: rtl">تعداد رای‌دهندگان:</p>
+                                <span>۳۲۰</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="direction: rtl">
+            <div style="background-color: #dc3545" class="modal-header">
+                <h5 class="modal-title" id="contact">ارسال پیام</h5>
+                <button style="alignment: inherit" type="button" class="close float-left border-left"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <p for="msj">Se enviará este mensaje a la persona que desea contactar, indicando que te quieres
+                        comunicar con el. Para esto debes de ingresar tu información personal.</p>
+                </div>
+                <div class="form-group">
+                    <label for="txtFullname">Nombre completo</label>
+                    <input type="text" id="txtFullname" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtEmail">Email</label>
+                    <input type="text" id="txtEmail" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtPhone">Teléfono</label>
+                    <input type="text" id="txtPhone" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
