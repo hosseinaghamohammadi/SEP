@@ -32,9 +32,9 @@
             }
         }
     </style>
-    <script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>
-    <script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>
-    <script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>
+{#    <script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script>#}
+{#    <script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script>#}
+{#    <script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script>#}
     <meta charset='UTF-8'>
     <meta name="robots" content="noindex">
     <link rel="shortcut icon" type="image/x-icon"
@@ -264,7 +264,8 @@
                                     <div class="border"></div>
                                 </div>
                                 <div class="col-12 text-right" style="direction: rtl">
-                                    <p style="text-align: justify ">نیازمند برنامه‌نوسی هستیم که شرایط زیر را دارا باشد:</p>
+                                    <p style="text-align: justify ">نیازمند برنامه‌نوسی هستیم که شرایط زیر را دارا
+                                        باشد:</p>
                                     <ul>
                                         <li>۲ سال سابقه کار</li>
                                         <li>متخصص کار با جنگو</li>
@@ -273,7 +274,7 @@
                                         <li>آشنایی با بوت‌استرپ</li>
                                         <li>آشنایی با گیت</li>
                                     </ul>
-                                    <button class="button btn-outline-success">درخواست استخدام</button>
+                                    <button class="button btn-outline-success" data-toggle="modal" data-target="#request">درخواست استخدام</button>
                                 </div>
                             </div>
                         </div>
@@ -442,13 +443,13 @@
                             </div>
                             <div style="margin-top: 15px" class="border align-baseline"></div>
 
-                            <button id="btn-contact" (click)="clearModal()"
+                            <button id="btn-contact"
                                     data-toggle="modal" data-target="#contact"
                                     style="margin-top: 10px"
-                                    class="btn btn-outline-primary btn-sm btn-block">ارسال پیام
+                                    class="btn btn-outline-primary btn-sm btn-block">نظردهی
                             </button>
 
-                            <button class="btn btn-outline-success btn-sm btn-block">نظردهی</button>
+                            <button class="btn btn-outline-success btn-sm btn-block">ارسال پیام</button>
                         </div>
                         <div class="col user-detail-row float-right" style="width: max-content">
                             <div class="col-md-12 col-sm-12 user-detail-section2 float-right"
@@ -470,7 +471,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="direction: rtl">
             <div style="background-color: #dc3545" class="modal-header">
-                <h5 class="modal-title" id="contact">ارسال پیام</h5>
+                <h5 class="modal-title" id="contact">نظر به کارفرما</h5>
                 <button style="alignment: inherit" type="button" class="close float-left border-left"
                         data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
@@ -478,28 +479,49 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <p for="msj">Se enviará este mensaje a la persona que desea contactar, indicando que te quieres
-                        comunicar con el. Para esto debes de ingresar tu información personal.</p>
+                    <p for="msj">تست</p>
                 </div>
                 <div class="form-group">
-                    <label for="txtFullname">Nombre completo</label>
+                    <label for="txtFullname">تست</label>
                     <input type="text" id="txtFullname" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="txtEmail">Email</label>
+                    <label for="txtEmail">تست</label>
                     <input type="text" id="txtEmail" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="txtPhone">Teléfono</label>
+                    <label for="txtPhone">تست</label>
                     <input type="text" id="txtPhone" class="form-control">
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Guardar
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">تایید
                 </button>
             </div>
         </div>
     </div>
 </div>
 </body>
+
+
+<!-- Modal -->
+<div class="modal fade" id="request" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="direction: rtl">
+        <h5 class="modal-title" id="exampleModalLabel">تایید درخواست</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        آیا می‌خواهید رزومه شما برای درخواست استخدام به شرکت مذکور فرستاده شود؟
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+        <button type="button" class="btn btn-primary">تایید</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,8 @@
 
 <body>
 {% include 'website/navbar.html' %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
 <div class="container carousel-container" style="margin-bottom: 100px; padding-top: 160px" >
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">

@@ -20,7 +20,9 @@
 
 
 <!--<div class="layout-all">-->
-<div class="empty-along-inputs container"><div style="font-size: xx-small">.</div></div>
+<div class="empty-along-inputs container">
+    <div style="font-size: xx-small">.</div>
+</div>
 <div class="container form-container" style="margin-top: 140px;">
     <!--<h2>Horizontal form</h2>-->
     <form action="/action_page.php" class="edit-container">
@@ -151,6 +153,9 @@
         </tr>
         </tbody>
     </table>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#historyModal">
+        تاریخچه تغییرات پروفایل
+    </button>
 </div>
 
 
@@ -178,3 +183,41 @@
 </script>
 </body>
 </html>
+
+<div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="direction: rtl">
+                <h5 class="modal-title" id="exampleModalLongTitle">تاریخچه تغییرات پروفایل</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group" style="direction: rtl">
+                    <li class="list-group-item"> در تاریخ ۱۰ آذر username بروز شد</li>
+                    <li class="list-group-item"> در تاریخ فلان username بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۶ بهمن آدرس بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۱ دی سابقه درسی بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۷ مرداد تاریخ تولد ثبت شد</li>
+                    <li class="list-group-item"> در تاریخ ۱۰ آذر username بروز شد</li>
+                    <li class="list-group-item"> در تاریخ فلان username بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۶ اسفند آدرس بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۱ دی سابقه درسی بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۱۰ آذر username بروز شد</li>
+                    <li class="list-group-item"> در تاریخ فلان username بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۶ بهمن آدرس بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۱ دی سابقه درسی بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۱۰ آذر username بروز شد</li>
+                    <li class="list-group-item"> در تاریخ فلان username بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۶ بهمن آدرس بروز شد</li>
+                    <li class="list-group-item"> در تاریخ ۱ دی سابقه درسی بروز شد</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">خروج</button>
+            </div>
+        </div>
+    </div>
+</div>

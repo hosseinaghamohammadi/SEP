@@ -49,3 +49,7 @@ def global_homepage(request):
 
 def employer(request):
     return render(request, 'website/employer_profile.html')
+
+
+def employee_home(request):
+    return render(request, 'website/employee_home.html')
