@@ -1,12 +1,24 @@
 <!doctype html>
+<html lang="en">
+
 {% load static %}
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Dalghak</title>
+    <title>Amin Bahjati</title>
     <link rel="stylesheet" href="{% static 'css/employee_profile.css' %}">
     <!------ Include the above in your HEAD tag ---------->
     <style>
@@ -22,8 +34,11 @@
     </style>
 </head>
 
+
 <body>
+
 <div class="container main-section">
+
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12 image-section">
             <img src="https://www.desktopbackground.org/p/2015/05/26/954182_auroras-wallpapers-archives-page-20-of-27-widewallpaper-info_1920x1080_h.jpg">
@@ -133,39 +148,39 @@
     </div>
 </div>
 
-<div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="contact">Contactarme</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <p for="msj">Se enviará este mensaje a la persona que desea contactar, indicando que te quieres
-                        comunicar con el. Para esto debes de ingresar tu información personal.</p>
-                </div>
-                <div class="form-group">
-                    <label for="txtFullname">Nombre completo</label>
-                    <input type="text" id="txtFullname" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="txtEmail">Email</label>
-                    <input type="text" id="txtEmail" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="txtPhone">Teléfono</label>
-                    <input type="text" id="txtPhone" class="form-control">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Guardar
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+{#<div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+{#    <div class="modal-dialog" role="document">#}
+{#        <div class="modal-content" style="direction: rtl">#}
+{#            <div style="background-color: #dc3545" class="modal-header">#}
+{#                <h5 class="modal-title" id="contact">ارسال پیام</h5>#}
+{#                <button style="alignment: inherit" type="button" class="close float-left border-left" data-dismiss="modal" aria-label="Close">#}
+{#                    <span aria-hidden="true">×</span>#}
+{#                </button>#}
+{#            </div>#}
+{#            <div class="modal-body">#}
+{#                <div class="form-group">#}
+{#                    <p for="msj">Se enviará este mensaje a la persona que desea contactar, indicando que te quieres#}
+{#                        comunicar con el. Para esto debes de ingresar tu información personal.</p>#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                    <label for="txtFullname">Nombre completo</label>#}
+{#                    <input type="text" id="txtFullname" class="form-control">#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                    <label for="txtEmail">Email</label>#}
+{#                    <input type="text" id="txtEmail" class="form-control">#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                    <label for="txtPhone">Teléfono</label>#}
+{#                    <input type="text" id="txtPhone" class="form-control">#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="modal-footer">#}
+{#                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>#}
+{#                <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Guardar#}
+{#                </button>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
 </body>

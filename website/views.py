@@ -5,9 +5,6 @@ from django.urls import reverse
 from .models import User
 
 
-def first_page(request):
-    return render(request, 'website/first_page.html')
-
 
 def sign_in(request):
     username = request.POST['username']
@@ -18,7 +15,7 @@ def sign_in(request):
     #         'error_message': "This username or password does not exists",
     #     })
     if username == "":
-        return render(request, 'website/first_page.html', {
+        return render(request, 'website/global_homepage.html', {
             'error_message': "You have not Entered a password",
         })
 
@@ -26,13 +23,13 @@ def sign_in(request):
     try:
         user = get_object_or_404(User, pk=username)
     except:
-        return render(request, 'website/first_page.html', {
+        return render(request, 'website/global_homepage.html', {
             'error_message': "This username or password does not exists user error",
         })
 
     password = request.POST['password']
     if user.password != password:
-        return render(request, 'website/first_page.html', {
+        return render(request, 'website/global_homepage.html', {
             'error_message': "This username or password does not exists",
         })
 
@@ -45,3 +42,7 @@ def employee(request):
 
 def edit_profile(request):
     return render(request, 'website/edit_profile.html')
+
+
+def global_homepage(request):
+    return render(request, 'website/global_homepage.html')
