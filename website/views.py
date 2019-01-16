@@ -54,3 +54,26 @@ def work_seeker(request, workseeker_id):
 
 def employer(request, employer_id):
     return HttpResponse("Employer fucking page")
+
+
+def sign_up(request, type, attr, page):
+    username = request.POST['username']
+    try:
+        user = get_object_or_404(User, pk=username)
+    except:
+        return render(request, 'website/firstPage.html', {
+                'error_message': "{} with this username or password does not exists".format(type),
+            })
+
+    password = request.POST['password']
+    if user.password != password:
+        return render(request, 'website/firstPage.html', {
+            'error_message': "{} with this username or password does not exists".format(type),
+        })
+
+    if not hasattr(user, attr):
+        return render(request, 'website/firstPage.html', {
+            'error_message': "{} with this username or password does not exists".format(type),
+        })
+    object = getattr(user, attr)
+    return HttpResponseRedirect(reverse(page ,args=(object.id,)))
