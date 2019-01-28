@@ -1,0 +1,16 @@
+@font-face {
+    font-family: irWeb;
+    src: url(../fonts/IRANSansWeb.ttf);
+}
+@font-face {
+    font-family: irWebBold;
+    src: url(../fonts/IRANSansWeb_Bold.ttf);
+}
+
+body{
+    /*background-color: #A2F78C;*/
+    font-family: irWeb;
+    color: #2b5b1d;;
+    background-image: linear-gradient(white, #A2F78C);
+    /*background-image: linear-gradient(#A2F78C, #59BC27);*/
+}

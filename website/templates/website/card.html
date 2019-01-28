@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        .column {
+            box-shadow: 0px 0px 0px 0px;
+            float: left;
+            width: 33.33%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+        }
+
+        .column {
+            /*border: 1px solid #f4511e;*/
+            /*border-radius:0 !important;*/
+            transition: box-shadow 0.5s;
+        }
+
+        .column:hover {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, .5);
+        }
+
+        @media screen and (max-width: 650px) {
+            .column {
+                width: 100%;
+                display: block;
+            }
+        }
+
+        .card {
+            /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+            text-align: center;
+        }
+
+        .card > img {
+            border-radius: 50%;
+            /*width: 200px;*/
+            /*height: 200px;*/
+            width: 70%;
+            height: 70%;
+        }
+
+        .card > .container{
+            overflow: auto;
+
+        }
+
+        .container {
+            padding: 0 16px;
+        }
+
+        .container::after, .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .title {
+            color: grey;
+        }
+
+        .button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body style="align: center">
+
+<br>
+<div class="container" style="border: 1px solid black; width: 60%; margin: auto " >
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <img src="{% static 'prof2.jpg' %}" alt="Jane" style="">
+                <div class="container" style="">
+                    <h2>Jane Doe</h2>
+                    <p class="title">CEO & Founder</p>
+                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                    <p>example@example.com</p>
+                    <p>
+                        <button class="button">Contact</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card" style="">
+                <img src="{% static 'prof3.jpg' %}" alt="Mike" style="">
+                <div class="container" style=")">
+                    <h2>Mike Ross</h2>
+                    <p class="title">Art Director</p>
+                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                    <p>example@example.com</p>
+                    <p>
+                        <button class="button">Contact</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card" style="text-align: center">
+                <img src="{% static 'prof5.jpg' %}" alt="John" style="">
+                <div class="container">
+                    <h2>John Doe</h2>
+                    <p class="title">Designer</p>
+                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                    <p>example@example.com</p>
+                    <p>
+                        <button class="button">Contact</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <img src="{% static 'prof3.jpg' %}" alt="John" style="">
+                <div class="container">
+                    <h2>John Doe</h2>
+                    <p class="title">Designer</p>
+                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                    <p>example@example.com</p>
+                    <p>
+                        <button class="button">Contact</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <img src="{% static 'prof5.jpg' %}" alt="John" style="">
+                <div class="container">
+                    <h2>John Doe</h2>
+                    <p class="title">Designer</p>
+                    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                    <p>example@example.com</p>
+                    <p>
+                        <button class="button">Contact</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

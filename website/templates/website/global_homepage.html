@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Hossein</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--generated links-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <!--Hossein added these links-->
+    <link rel="stylesheet" href="{% static 'css/global_homepage.css' %}">
+</head>
+
+<body>
+{% include 'website/navbar.html' %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<div class="container carousel-container" style="margin-bottom: 100px; padding-top: 160px" >
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+
+            <div class="item active">
+                <img src="{% static 'image1.jpg' %}" alt="Yazd!" style="">
+                <div class="carousel-caption">
+                    <h3>Yazd</h3>
+                    <p>Yazd is always so much fun!</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="{% static 'image2.jpg' %}" alt="Tabriz" style="">
+                <div class="carousel-caption">
+                    <h3>Tabriz</h3>
+                    <p>Thank you, Tabriz!</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="{% static 'image3.jpg' %}" alt="Tehran" style="">
+                <div class="carousel-caption">
+                    <h3>Tehran</h3>
+                    <p>We love the Big Rahnama!</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!--<div>-->
+    <!--<img src="prof4.jpg">-->
+<!--</div>-->
+
+
+<div id="pricing" class="container-fluid" style="margin-bottom: 1000px;" >
+    <div class="text-center">
+        <h2 id="targetOfScroll">مزایا</h2>
+        <h4>دلیل خود برای استفاده از این سامانه را انتخاب کنید</h4>
+    </div>
+    <div class="row slideanim" style="direction: rtl">
+        <div class="col-sm-4 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1>برترین‌ها</h1>
+                </div>
+                <div class="panel-body">
+                    <p> شرکت‌های برتر کشور</p>
+                    <p>بزرگترین پروژه‌ها</p>
+                    <p> و ...</p>
+                    <p>جایزه بهترین پلتفرم کاریابی</p>
+                    <p>و ...</p>
+                </div>
+                <div class="panel-footer">
+                    <h4>را از</h4>
+                    <h3 style="font-family: Century">SEP</h3>
+                    <h4>بخواهید</h4>
+                    <button class="btn btn-lg">ثبت‌نام</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1>با تجربه‌ها</h1>
+                </div>
+                <div class="panel-body" style="direction: rtl">
+                    <p>و ...</p>
+                    <p>و ...</p>
+                    <p>و ...</p>
+                    <p>و ...</p>
+                    <p>و ...</p>
+                </div>
+                <div class="panel-footer">
+                    <h4>را در</h4>
+                    <h3 style="font-family: Century">SEP</h3>
+                    <h4>پیدا کنید</h4>
+                    <button class="btn btn-lg">ثبت‌نام</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1>پیش‌ران‌ها</h1>
+                </div>
+                <div class="panel-body">
+                    <p>و ...</p>
+                    <p>و ...</p>
+                    <p>و ...</p>
+                    <p>و ...</p>
+                    <p>و ...</p>
+                </div>
+                <div class="panel-footer">
+                    <h4>از</h4>
+                    <h3 style="font-family: Century">SEP</h3>
+                    <h4>استفاده می‌کنند.</h4>
+                    <button class="btn btn-lg">ثبت‌نام</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="contact" class="container-fluid bg-grey" style="background-color: #1c7430;color: white; padding: 60px 50px; direction: rtl">
+    <h2 class="col-sm-8" style="margin-bottom: 20px">ارسال پیام</h2>
+
+    <div class="row">
+
+        <div class="col-sm-offset-1 col-sm-7 slideanim">
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                </div>
+                <div class="col-sm-6 form-group">
+                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                </div>
+            </div>
+            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+            <div class="row">
+                <div class="col-sm-12 form-group" style="float: left; text-align: left">
+                    <button class="btn btn-default " style="float:left;" type="submit" id="scrollTest" onclick="testing()">ارسال</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <p>با مادرارتباط باشید و تا ۲۴ ساعت پس از آن به سراغ‌تان خواهیم آمد ; ))</p>
+            <p><span class="glyphicon glyphicon-map-marker"></span>ایران، تهران، دانشگاه صنعتی شریف</p>
+            <p><span class="glyphicon glyphicon-phone"></span> ۰۹۳۳۶۳۸۲۹۶۳+</p>
+            <p><span class="glyphicon glyphicon-envelope"></span> hosein_aghamohammadi@yahoo.com</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    function testing(){
+        // var x = document.getElementById("scrollTest");
+        // $('html, body').animate({
+        //     scrollTop: $("#targetOfScroll").offset().top - 100},
+        //     'slow');
+    }
+    function widthControlling() {
+        var x = document.getElementById("rightNavbar");
+        var y = x.getElementsByTagName("li");
+        var i;
+        for (i = 0; i < y.length; i++) {
+            y[i].style.marginRight = "2%";
+            y[i].style.width = "96%";
+        }
+        var x = document.getElementById("leftNavbar");
+        var y = x.getElementsByTagName("li");
+        var i;
+        for (i = 0; i < y.length; i++) {
+            y[i].style.marginRight = "2%";
+            y[i].style.width = "96%";
+        }
+        // document.getElementsByClassName("nav")[0].getElementsByTagName("li")[0].style.width = "100%";
+    }
+</script>
+</body>
+</html>

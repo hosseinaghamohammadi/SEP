@@ -1,30 +1,55 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import WorkSeeker, Employer,
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 
-
-
-
-def first_page(request):
-    return render(request, 'website/firstPage.html')
+from .models import User
 
 
 def sign_in(request):
+    username = request.POST['username']
 
-    try:
-        username = request.post['username']
-        password = request.post['password']
-        question = get_object_or_404(WorkSeeker, pk = username)
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
-        return render(request, 'polls/detail.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
+    # except (KeyError, uuser.DoesNotExist):
+    #     # Redisplay the question voting form.
+    #     return render(request, 'website/first_page.html', {
+    #         'error_message': "This username or password does not exists",
+    #     })
+    if username == "":
+        return render(request, 'website/global_homepage.html', {
+            'error_message': "You have not Entered a password",
         })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+    print(username)
+    try:
+        user = get_object_or_404(User, pk=username)
+    except:
+        return render(request, 'website/global_homepage.html', {
+            'error_message': "This username or password does not exists user error",
+        })
+
+    password = request.POST['password']
+    if user.password != password:
+        return render(request, 'website/global_homepage.html', {
+            'error_message': "This username or password does not exists",
+        })
+
+    return HttpResponseRedirect(reverse('workseeker page'))
+
+
+def employee(request):
+    return render(request, 'website/employee_profile.html')
+
+
+def edit_profile(request):
+    return render(request, 'website/edit_profile.html')
+
+
+def global_homepage(request):
+    return render(request, 'website/global_homepage.html')
+
+
+def employer(request):
+    return render(request, 'website/employer_profile.html')
+
+
+def employee_home(request):
+    return render(request, 'website/employee_home.html')
