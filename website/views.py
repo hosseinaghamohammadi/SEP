@@ -1,3 +1,4 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
@@ -5,34 +6,66 @@ from django.urls import reverse
 from .models import User
 
 
-def sign_in(request):
-    username = request.POST['username']
+def sign_in_employee(request):
+    type = "Employee"
+    attr = "employee"
+    page = 'employee page'
 
-    # except (KeyError, uuser.DoesNotExist):
-    #     # Redisplay the question voting form.
-    #     return render(request, 'website/first_page.html', {
-    #         'error_message': "This username or password does not exists",
-    #     })
-    if username == "":
-        return render(request, 'website/global_homepage.html', {
-            'error_message': "You have not Entered a password",
+    return sign_in(request, type, attr, page)
+
+
+def sign_in_employer(request):
+    type = "Employer"
+    attr = "employer"
+    page = 'employer page'
+
+    return sign_in(request, type, attr, page)
+
+
+def sign_in(request, type, attr, page):
+    username = request.POST['username']
+    try:
+        user = get_object_or_404(User, pk=username)
+    except:
+        return render(request, 'website/firstPage.html', {
+            'error_message': "{} with this username or password does not exists".format(type),
         })
 
-    print(username)
+    password = request.POST['password']
+    if user.password != password:
+        return render(request, 'website/firstPage.html', {
+            'error_message': "{} with this username or password does not exists".format(type),
+        })
+
+    if not hasattr(user, attr):
+        return render(request, 'website/firstPage.html', {
+            'error_message': "{} with this username or password does not exists".format(type),
+        })
+    object = getattr(user, attr)
+    return HttpResponseRedirect(reverse(page, args=(object.id,)))
+
+
+
+def sign_up(request, type, attr, page):
+    username = request.POST['username']
     try:
         user = get_object_or_404(User, pk=username)
     except:
         return render(request, 'website/global_homepage.html', {
-            'error_message': "This username or password does not exists user error",
+            'error_message': "{} with this username or password does not exists".format(type),
         })
 
     password = request.POST['password']
     if user.password != password:
         return render(request, 'website/global_homepage.html', {
-            'error_message': "This username or password does not exists",
-        })
+            'error_message': "{} with this username or password does not exists".format(type), })
 
-    return HttpResponseRedirect(reverse('workseeker page'))
+    if not hasattr(user, attr):
+        return render(request, 'website/firstPage.html', {
+            'error_message': "{} with this username or password does not exists".format(type),
+        })
+    object = getattr(user, attr)
+    return HttpResponseRedirect(reverse(page ,args=(object.id,)))
 
 
 def employee(request):
