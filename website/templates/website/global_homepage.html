@@ -100,7 +100,68 @@
                     <h4>را از</h4>
                     <h3 style="font-family: Century">SEP</h3>
                     <h4>بخواهید</h4>
-                    <button class="btn btn-lg">ثبت‌نام</button>
+                    <button type="submit" class="btn btn-lg" data-toggle="modal" data-target="#signUpppp">ثبت‌نام</button>
+                    <!-- Modal -->
+{#                    -------------------------------------------------------------------------------------------#}
+                    <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="signUpTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+
+                            <form action="{% url 'get mail' 1%}" method="post"> {% csrf_token %}
+                              <input type="submit" value="Employer">
+                            </form>
+                            <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#employeeSignUp">Employee</button>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+        <!-- #############################################################################################################################-->
+                    <!-- Employee Sign Up modal -->
+                    <div class="modal fade" id="employeeSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="employeeSignUpTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+
+                          <form action="{% url 'Sign Up Employee' %}" method="post">
+                            {% csrf_token %}
+
+                          <div class="modal-body">
+
+
+                                <input type="text" name="stdid" id="stdid" value= "ex:94109595">
+                                <label for="stdid"> Student ID </label><br>
+
+
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                            <input type="submit" value="Sign In">
+
+                          </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+
+{#                    ----------------------------------------------------#}
                 </div>
             </div>
         </div>
@@ -120,7 +181,7 @@
                     <h4>را در</h4>
                     <h3 style="font-family: Century">SEP</h3>
                     <h4>پیدا کنید</h4>
-                    <button class="btn btn-lg">ثبت‌نام</button>
+                    <button type="submit" class="btn btn-lg" data-toggle="modal" data-target="#signUp">ثبت‌نام</button>
                 </div>
             </div>
         </div>
@@ -140,7 +201,7 @@
                     <h4>از</h4>
                     <h3 style="font-family: Century">SEP</h3>
                     <h4>استفاده می‌کنند.</h4>
-                    <button class="btn btn-lg">ثبت‌نام</button>
+                    <button type="submit" class="btn btn-lg" data-toggle="modal" data-target="#signUp">ثبت‌نام</button>
                 </div>
             </div>
         </div>

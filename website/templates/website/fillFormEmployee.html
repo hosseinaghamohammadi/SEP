@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Fill the form</title>
+  </head>
+  <body>
+    <h1>Fill the form</h1>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'verify form employee' mail%}" method="post"> {% csrf_token %}
+  <input type="text" name="username" id="username">
+  <label for="username"> username </label><br>
+
+  <input type="text" name="password" id="password">
+  <label for="password"> password </label><br>
+
+  <input type="text" name="password 2" id="password 2">
+  <label for="password 2"> second password </label><br>
+
+  <input type="text" name="name" id="name">
+  <label for="name"> name </label><br>
+
+  <input type="text" name="family name" id="family name">
+  <label for="famliy name"> famliy name </label><br>
+
+  <input type="text" name="phone number" id="phone number">
+  <label for="phone number"> phone number </label><br>
+
+  <input type="date" name="date of birth" id="date of birth">
+  <label for="date of birth"> date of birth</label><br>
+
+  <input type="text" name="national ID" id="national ID">
+  <label for="national ID"> date of birth</label><br>
+
+  <input type="text" name="sex" id="sex">
+  <label for="sex"> sex</label><br>
+
+  <input type="text" name="address" id="address">
+  <label for="address"> address </label><br>
+
+
+  <input type="submit" value="Send">
+</form>
+
