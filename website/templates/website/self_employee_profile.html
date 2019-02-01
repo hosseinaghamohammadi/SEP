@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+
+    <title>Amin Bahjati</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <!------ Include the above in your HEAD tag ---------->
+    <style>
+        @media (max-width: 575px) {
+            div#vii1 {
+                order: 1;
+            }
+
+            div#vii2 {
+                order: 2;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+<div class="container main-section">
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+            <img src="https://www.desktopbackground.org/p/2015/05/26/954182_auroras-wallpapers-archives-page-20-of-27-widewallpaper-info_1920x1080_h.jpg">
+        </div>
+        <div style="margin-top: 10px" class="col">
+            <div class="row">
+                <div id="vii2" class="col-lg-9 col-md-8 col-sm-7 col-xs-12 float-left">
+                    {% if employee.eeexperience_set.all %}
+                        <div style="margin-top: 20px" class="col-12 row profile-left-section">
+                            <div class="col-12 profile-header-section1 float-right text-right">
+                                <h1>تجربه‌ها</h1>
+                                <div class="border"></div>
+                            </div>
+                            <div class="col-12 text-right" style="direction: rtl">
+                                <ul>
+                                    {% for experience in employee.eeexperience_set.all %}
+                                        <li>{{ experience.text }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if employee.eeeducation_set.all %}
+                        <div style="margin-top: 20px" class="col-12 row profile-left-section">
+                            <div class="col-12 profile-header-section1 float-right text-right">
+                                <h1>سوابق تحصیلی</h1>
+                                <div class="border"></div>
+                            </div>
+                            <div class="col-12 text-right" style="direction: rtl">
+                                <ul>
+                                    {% for education in employee.eeeducation_set.all %}
+                                        <li>{{ education.text }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if employee.eecourse_set.all %}
+                        <div style="margin-top: 20px" class="col-12 row profile-left-section">
+                            <div class="col-12 profile-header-section1 float-right text-right">
+                                <h1>درس‌های مهم</h1>
+                                <div class="border"></div>
+                            </div>
+                            <div class="col-12 text-right" style="direction: rtl">
+                                {% for course in employee.eecourse_set.all %}
+                                    <div style="margin-right: 20px; margin-left: 20px"
+                                         class="row border border-light  {% cycle 'bg-light' '' %}">
+                                        <div class="col-5">{{ course.name }}</div>
+                                        <div class="col-5">{{ course.master }}</div>
+                                        <div class="col-2">{{ course.grade }}</div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if employee.eehonor_set.all %}
+                        <div style="margin-top: 20px" class="col-12 row profile-left-section">
+                            <div class="col-12 profile-header-section1 float-right text-right">
+                                <h1>افتخارات</h1>
+                                <div class="border"></div>
+                            </div>
+                            <div class="col-12 text-right" style="direction: rtl">
+                                <ul>
+                                    {% for honor in employee.eehonor_set.all %}
+                                        <li>{{ honor.text }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if employee.eeskill_set.all %}
+                        <div style="margin-top: 20px" class="col-12 row profile-left-section">
+                            <div class="col-12 profile-header-section1 float-right text-right">
+                                <h1>مهارت‌ها</h1>
+                                <div class="border"></div>
+                            </div>
+                            <div class="col-12 text-right" style="direction: rtl; font-size: 20px">
+                                <div class="row small" style="margin-left: 10px">
+                                    {% for skill in employee.eeskill_set.all %}
+                                        <div style="text-align: center" class="{% cycle 'btn-success' 'btn-light' %} col-lg-4 col-md-6">
+                                            {{ skill.name }}:{{ skill.level }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div id="vii1" class="col-lg-3 col-md-4 col-sm-5 col-xs-12 user-profile-part float-right">
+                    <div class="row" style="background-color: #eff9f6">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 user-image text-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdF-IXx4Uhtwl7niNPp4Tvz9-6aeCRensRVQLZLJd1ZBnWSx99Aw"
+                                 class="rounded-circle img-fluid img-thumbnail mx-auto" alt="user_img">
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center follow">
+                            <ul class="list-group text-center">
+                                <li class="list-group-item border-success">
+                                    <b>{{ employee.name }} {{ employee.family_name }}</b></li>
+                                <li class="list-group-item border-success small">دانشجوی کارشناسی مهندسی
+                                    کامپیوتر
+                                </li>
+                                <li class="list-group-item border-success small">{{ employee.address }}
+                                </li>
+                                <li class="list-group-item border-success small">{{ employee.studentID }}</li>
+
+                            </ul>
+                            <button id="btn-contact" (click)="clearModal()"
+                                    data-toggle="modal" data-target="#contact"
+                                    style="margin-top: 10px"
+                                    class="btn btn-outline-primary btn-sm btn-block">ارسال پیام
+                            </button>
+
+                            <button class="btn btn-outline-success btn-sm btn-block">دریافت رزومه</button>
+                        </div>
+                        <div class="col user-detail-row float-right" style="width: max-content">
+                            <div class="col-md-12 col-sm-12 user-detail-section2 float-right"
+                                 style="text-align: right">
+                                {% if employee.eeactivity_set.all %}
+                                    <div class="border align-baseline"></div>
+                                    <ul style="direction: rtl; text-align: justify; margin-right: -30px; list-style-type: square; font-size: 12px">
+                                        {% for activity in employee.eeactivity_set.all %}
+                                            <li>{{ activity.text }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                                {% if employee.eeinterest_set.all %}
+                                    <div class="border align-baseline"></div>
+                                    <ul style="text-align: center; margin-right: -10px" class="list-inline">
+                                        {% for interest in employee.eeinterest_set.all %}
+                                            <li class="list-inline-item"><span style="font-size: 12px; color: white"
+                                                                               class="badge badge-success">{{ interest.text }}</span>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
