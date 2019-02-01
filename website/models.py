@@ -35,12 +35,6 @@ class Phone(models.Model):
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True, default="+98912988888")
 
 
-class CV(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    CV_text = models.FileField()
-    picture = models.FileField()
-
-
 class Employer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
@@ -66,7 +60,7 @@ class Requirement(models.Model):
 
 class JobRequest(models.Model):
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
-    workSeeker = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
     date = models.DateField()
 
@@ -76,3 +70,41 @@ class JobRequest(models.Model):
 
 class SystemAdmin(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class EEExperience(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    text = models.CharField(max_length=100, default="")
+
+
+class EEEducation(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    text = models.CharField(max_length=100, default="")
+
+
+class EECourse(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, default="")
+    master = models.CharField(max_length=50, default="")
+    grade = models.DecimalField(max_digits=4, decimal_places=2)
+
+
+class EEHonor(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    text = models.CharField(max_length=100, default="")
+
+
+class EESkill(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30, default="")
+    level = models.CharField(max_length=30, default="")
+
+
+class EEActivity(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    text = models.CharField(max_length=100, default="")
+
+
+class EEInterest(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    text = models.CharField(max_length=30, default="")

@@ -185,11 +185,11 @@ def sign_up(request, type, attr, page):
             'error_message': "{} with this username or password does not exists".format(type),
         })
     object = getattr(user, attr)
-    return HttpResponseRedirect(reverse(page ,args=(object.id,)))
+    return HttpResponseRedirect(reverse(page, args=(object.id,)))
 
 
-def employee(request):
-    return render(request, 'website/employee_profile.html')
+def employee_temp(request):
+    return render(request, 'website/employee_profile_temp.html')
 
 
 def edit_profile(request):
@@ -200,9 +200,14 @@ def global_homepage(request):
     return render(request, 'website/global_homepage.html')
 
 
-def employer(request):
+def employer_temp(request):
     return render(request, 'website/employer_profile.html')
 
 
 def employee_home(request):
     return render(request, 'website/employee_home.html')
+
+
+def employee(request, employee_id):
+    ee = get_object_or_404(Employee, id=employee_id)
+    return render(request, 'website/employee_profile.html', {'employee': ee})
