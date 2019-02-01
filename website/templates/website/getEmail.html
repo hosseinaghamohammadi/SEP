@@ -23,7 +23,7 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'verify mail' type %}" method="post"> {% csrf_token %}
+<form action="{% url 'verify mail' type stdid%}" method="post"> {% csrf_token %}
   <input type="text" name="mail" id="mail">
   <label for="mail"> email </label><br>
 

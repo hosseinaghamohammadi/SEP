@@ -12,7 +12,7 @@ class User(models.Model):
 
 
 class Employee(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="dummy")
     family_name = models.CharField(max_length=200, default="dummy")
@@ -42,7 +42,7 @@ class CV(models.Model):
 
 
 class Employer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
     employer_name = models.CharField(max_length=200, default="dummy")
     employer_address = models.CharField(max_length=400, default="dummy")

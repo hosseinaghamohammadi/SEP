@@ -3,16 +3,14 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 
-from .models import User, Employer, Employee
+from .models import User, Employer, Employee, Phone
 
 
-
-def get_mail(request, type):
-    print(type)
-    return render(request, 'website/getEmail.html', {"type":type})
+def get_mail(request, type, stdid):
+    return render(request, 'website/getEmail.html', {"type":type, "stdid":stdid})
 
 
-def verify_mail(request, type):
+def verify_mail(request, type, stdid):
     mail = request.POST['mail']
 
     user = User.objects.filter(mail= mail)
@@ -20,23 +18,24 @@ def verify_mail(request, type):
         return render(request, 'website/getEmail.html', {
             'error_message': "This mail Already Exists".format(type),
             'type':type,
+            "stdid": stdid,
         })
 
     if type == 2:
-        return redirect('fill form employee', mail)
+        return redirect('fill form employee', mail, stdid)
     else:
         return redirect('fill form employer', mail)
 
 
-def fill_form_employee(request, mail):
-    return render(request, 'website/fillFormEmployee.html', {"mail":mail})
+def fill_form_employee(request, mail, stdid):
+    return render(request, 'website/fillFormEmployee.html', {"mail":mail, "stdid":stdid})
 
 
 def fill_form_employer(request, mail):
     return render(request, 'website/fillFormEmployer.html', {"mail":mail})
 
 
-def verify_form_employee(request, mail):
+def verify_form_employee(request, mail, stdid):
     username = request.POST['username']
     password = request.POST['password']
     password2 = request.POST['password 2']
@@ -48,28 +47,31 @@ def verify_form_employee(request, mail):
         return render(request, 'website/fillFormEmployee.html', {
             'error_message': "Username Already Exists",
             'mail':mail,
+            "stdid":stdid,
         })
     data_user = {"mail":mail, "username":username, "password":password}
     data_employee = {"address":address, "birth_date":dateOfBirth}
 
-    u = User(*data_user)
-    u.save()
-    w = Employee(address= address, birth_date=dateOfBirth, user=u, studentID=1222123282)
-    w.save()
-    # try:
-    #     f = Phone(phoneNumber=phone, User = u)
-    #     f.save()
-    # except:
-    #
-    #     return render(request, 'website/fillFormEmployee.html', {
-    #         'error_message': "Invalid phone number",
-    #         'mail': mail,
-    #     })
+    User.objects.create(**data_user)
+
+    user = User.objects.get(username=username)
+    data_employee["user"] = user
+    Employee.objects.create(**data_employee)
+
+    try:
+        Phone.objects.create(phoneNumber=phone, User = user)
+
+    except:
+
+        return render(request, 'website/fillFormEmployee.html', {
+            'error_message': "Invalid phone number",
+            'mail': mail,
+        })
 
     return HttpResponseRedirect(reverse('employee page'))
 
 
-def verify_form_employer(request,mail):
+def verify_form_employer(request, mail):
     username = request.POST['username']
     password = request.POST['password']
     password2 = request.POST['password 2']
@@ -87,24 +89,28 @@ def verify_form_employer(request,mail):
             'mail':mail,
         })
     data_user = {"mail":mail, "username":username, "password":password}
-    data_employer = {"companyAddress":companyAddress, "companyName":companyName}
+    data_employer = {"companyAddress":companyAddress, "companyName":companyName, "companyWebsite":companyWebsite}
 
-    u = User(*data_user)
-    u.save()
 
-    e = Employer(companyAddress=companyAddress, companyName = companyName, companyWebsite=companyWebsite, user=user)
-    e.save()
-    # try:
-    #
-    #     f = Phone(phoneNumber=phone, User=u)
-    #     f.save()
-    # except:
-    #     return render(request, 'website/fillFormEmployer.html', {
-    #         'error_message': "Invalid phone number",
-    #         'mail': mail,
-    #     })
+    # User.objects.create(mail = mail, username = username, password = password)
 
-    return HttpResponseRedirect(reverse('employer page', data_user))
+    user = User(mail = mail, username = username, password = password)
+    e = Employee(companyAddress = companyAddress, companyName = companyName, companyWebsite = companyWebsite)
+    user.employer_set.add(e)
+    e.user = user
+    user.save()
+
+    try:
+        Phone.objects.create(phoneNumber=phone, User=user)
+
+    except:
+
+        return render(request, 'website/fillFormEmployee.html', {
+            'error_message': "Invalid phone number",
+            'mail': mail,
+        })
+
+    return HttpResponseRedirect(reverse('employer page'))
 
 
 
@@ -118,7 +124,7 @@ def sign_up_employee(request):
             'error_message': "This studentID does not exists".format(type),
         })
 
-    return HttpResponseRedirect(reverse('get mail', 2))
+    return HttpResponseRedirect(reverse('get mail', 2, stdid))
 
 
 def sign_in_employee(request):
@@ -142,23 +148,22 @@ def sign_in(request, type, attr, page):
     try:
         user = get_object_or_404(User, pk=username)
     except:
-        return render(request, 'website/firstPage.html', {
+        return render(request, 'website/global_homepage.html', {
             'error_message': "{} with this username or password does not exists".format(type),
         })
 
     password = request.POST['password']
     if user.password != password:
-        return render(request, 'website/firstPage.html', {
+        return render(request, 'website/global_homepage.html', {
             'error_message': "{} with this username or password does not exists".format(type),
         })
 
     if not hasattr(user, attr):
-        return render(request, 'website/firstPage.html', {
+        return render(request, 'website/global_homepage.html', {
             'error_message': "{} with this username or password does not exists".format(type),
         })
     object = getattr(user, attr)
     return HttpResponseRedirect(reverse(page, args=(object.id,)))
-
 
 
 def sign_up(request, type, attr, page):
@@ -176,7 +181,7 @@ def sign_up(request, type, attr, page):
             'error_message': "{} with this username or password does not exists".format(type), })
 
     if not hasattr(user, attr):
-        return render(request, 'website/firstPage.html', {
+        return render(request, 'website/global_homepage.html', {
             'error_message': "{} with this username or password does not exists".format(type),
         })
     object = getattr(user, attr)
