@@ -3,7 +3,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 
+from website.forms import SignUpForm
 from .models import User, Employer, Employee, Phone
+
 
 
 def get_mail(request, type, stdid):
@@ -211,3 +213,14 @@ def employee_home(request):
 def employee(request, employee_id):
     ee = get_object_or_404(Employee, id=employee_id)
     return render(request, 'website/employee_profile.html', {'employee': ee})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('/website')
+    else:
+        form = SignUpForm()
+    return render(request, 'website/signup.html', {'form': form})
