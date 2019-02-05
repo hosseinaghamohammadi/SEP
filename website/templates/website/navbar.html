@@ -180,7 +180,7 @@
                           </div>
                           <div class="modal-body">
 
-                            <form action="{% url 'get mail' 1%}" method="post"> {% csrf_token %}
+                            <form action="{% url 'get mail' 1 "None"%}" method="post"> {% csrf_token %}
                               <input type="submit" value="Employer">
                             </form>
                             <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#employeeSignUp">Employee</button>
