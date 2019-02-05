@@ -1,25 +1,28 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse
+from weasyprint import HTML
 
+from website.models import EEExperience
 from .models import User, Employer, Employee
-
 
 
 def get_mail(request, type):
     print(type)
-    return render(request, 'website/getEmail.html', {"type":type})
+    return render(request, 'website/getEmail.html', {"type": type})
 
 
 def verify_mail(request, type):
     mail = request.POST['mail']
 
-    user = User.objects.filter(mail= mail)
+    user = User.objects.filter(mail=mail)
     if user.count() > 0:
         return render(request, 'website/getEmail.html', {
             'error_message': "This mail Already Exists".format(type),
-            'type':type,
+            'type': type,
         })
 
     if type == 2:
@@ -29,11 +32,11 @@ def verify_mail(request, type):
 
 
 def fill_form_employee(request, mail):
-    return render(request, 'website/fillFormEmployee.html', {"mail":mail})
+    return render(request, 'website/fillFormEmployee.html', {"mail": mail})
 
 
 def fill_form_employer(request, mail):
-    return render(request, 'website/fillFormEmployer.html', {"mail":mail})
+    return render(request, 'website/fillFormEmployer.html', {"mail": mail})
 
 
 def verify_form_employee(request, mail):
@@ -43,18 +46,18 @@ def verify_form_employee(request, mail):
     phone = request.POST['phone number']
     address = request.POST['address']
     dateOfBirth = request.POST['date of birth']
-    user = User.objects.filter(username = username)
+    user = User.objects.filter(username=username)
     if user.count() > 0:
         return render(request, 'website/fillFormEmployee.html', {
             'error_message': "Username Already Exists",
-            'mail':mail,
+            'mail': mail,
         })
-    data_user = {"mail":mail, "username":username, "password":password}
-    data_employee = {"address":address, "birth_date":dateOfBirth}
+    data_user = {"mail": mail, "username": username, "password": password}
+    data_employee = {"address": address, "birth_date": dateOfBirth}
 
     u = User(*data_user)
     u.save()
-    w = Employee(address= address, birth_date=dateOfBirth, user=u, studentID=1222123282)
+    w = Employee(address=address, birth_date=dateOfBirth, user=u, studentID=1222123282)
     w.save()
     # try:
     #     f = Phone(phoneNumber=phone, User = u)
@@ -69,7 +72,7 @@ def verify_form_employee(request, mail):
     return HttpResponseRedirect(reverse('employee page'))
 
 
-def verify_form_employer(request,mail):
+def verify_form_employer(request, mail):
     username = request.POST['username']
     password = request.POST['password']
     password2 = request.POST['password 2']
@@ -78,21 +81,20 @@ def verify_form_employer(request,mail):
     companyAddress = request.POST['companyAddress']
     companyWebsite = request.POST.get('companyWebsite')
 
-
-    user = User.objects.filter(username = username)
+    user = User.objects.filter(username=username)
 
     if user.count() > 0:
         return render(request, 'website/fillFormEmployee.html', {
             'error_message': "Username Already Exists",
-            'mail':mail,
+            'mail': mail,
         })
-    data_user = {"mail":mail, "username":username, "password":password}
-    data_employer = {"companyAddress":companyAddress, "companyName":companyName}
+    data_user = {"mail": mail, "username": username, "password": password}
+    data_employer = {"companyAddress": companyAddress, "companyName": companyName}
 
     u = User(*data_user)
     u.save()
 
-    e = Employer(companyAddress=companyAddress, companyName = companyName, companyWebsite=companyWebsite, user=user)
+    e = Employer(companyAddress=companyAddress, companyName=companyName, companyWebsite=companyWebsite, user=user)
     e.save()
     # try:
     #
@@ -105,7 +107,6 @@ def verify_form_employer(request,mail):
     #     })
 
     return HttpResponseRedirect(reverse('employer page', data_user))
-
 
 
 def sign_up_employee(request):
@@ -204,4 +205,40 @@ def employee_home(request):
 
 def employee(request, employee_id):
     ee = get_object_or_404(Employee, id=employee_id)
-    return render(request, 'website/employee_profile.html', {'employee': ee})
+    return render(request, 'website/employee_profile.html', {'employee': ee, 'employee_id': employee_id})
+
+
+def get_pdf(request, employee_id):
+    ee = get_object_or_404(Employee, id=employee_id)
+    html_string = render_to_string('website/employee_profile.html', {'employee': ee, 'employee_id': employee_id})
+    html = HTML(string=html_string)
+    html.write_pdf(target='/tmp/resume.pdf')
+
+    fs = FileSystemStorage('/tmp')
+    with fs.open('resume.pdf') as pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="resume.pdf"'
+        return response
+
+
+def delete_experience(request, employee_id, experience_pk):
+    experience = get_object_or_404(EEExperience, pk=experience_pk)
+    experience.delete()
+    return HttpResponseRedirect(reverse('employee page', args=(employee_id,)))
+
+
+def edit_experience(request, employee_id, experience_pk):
+    experience = get_object_or_404(EEExperience, pk=experience_pk)
+    if request.method == "POST":
+        print(request.POST)
+        experience.text = request.POST['text']
+        experience.save()
+
+    return HttpResponseRedirect(reverse('employee page', args=(employee_id,)))
+
+
+def add_experience(request, employee_id):
+    employee = get_object_or_404(Employee, id=employee_id)
+    if request.method == "POST":
+        EEExperience.objects.create(employee=get_object_or_404(Employee, id=employee_id), text=request.POST['text'])
+    return HttpResponseRedirect(reverse('employee page', args=(employee_id,)))
