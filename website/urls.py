@@ -22,4 +22,11 @@ urlpatterns = [
     path('verifyFormEmployee/<str:mail>/<str:stdid>', views.verify_form_employee, name='verify form employee'),
     path('verifyFormEmployer/<str:mail>/', views.verify_form_employer, name='verify form employer'),
     path('SignUpEmployee/', views.sign_up_employee, name='Sign Up Employee'),
+    path('<int:employee_id>/employee/get_pdf', views.get_pdf, name='employee CV'),
+    path('<int:employee_id>/employee/delete_experience/<int:experience_pk>', views.delete_experience, name='delete experience'),
+    path('<int:employee_id>/employee/edit_experience/<int:experience_pk>', views.edit_experience,
+         name='edit experience'),
+    path('<int:employee_id>/employee/add_experience/', views.add_experience,
+         name='add experience')
+
 ]
