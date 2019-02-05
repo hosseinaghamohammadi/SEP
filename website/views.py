@@ -14,25 +14,25 @@ from django.core.files.storage import FileSystemStorage
 
 
 
-# def get_mail(request, type, stdid):
-#     return render(request, 'website/getEmail.html', {"type":type, "stdid":stdid})
-#
-#
-# # def verify_mail(request, type, stdid):
-# #     mail = request.POST['mail']
-# #
-# #     user = User.objects.filter(mail=mail)
-# #     if user.count() > 0:
-# #         return render(request, 'website/getEmail.html', {
-# #             'error_message': "This mail Already Exists".format(type),
-# #             'type':type,
-# #             "stdid": stdid,
-# #         })
-# #
-# #     if type == 2:
-# #         return redirect('fill form employee', mail, stdid)
-# #     else:
-# #         return redirect('fill form employer', mail)
+def get_mail(request, type, stdid):
+    return render(request, 'website/getEmail.html', {"type":type, "stdid":stdid})
+
+
+def verify_mail(request, type, stdid):
+    mail = request.POST['mail']
+
+    user = User.objects.filter(mail=mail)
+    if user.count() > 0:
+        return render(request, 'website/getEmail.html', {
+            'error_message': "This mail Already Exists".format(type),
+            'type':type,
+            "stdid": stdid,
+        })
+
+    if type == 2:
+        return redirect('fill form employee', mail, stdid)
+    else:
+        return redirect('fill form employer', mail)
 
 
 def fill_form_employee(request, mail, stdid):
@@ -207,7 +207,7 @@ def edit_profile(request):
 
 def global_homepage(request):
     # return render(request, 'website/edit_profile.html')
-    return render(request, 'website/employee_home.html', {})
+    return render(request, 'website/global_homepage.html', {})
 
 
 def employer_temp(request):
