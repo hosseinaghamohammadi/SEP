@@ -49,7 +49,10 @@
                     {% if employee.eeexperience_set.all %}
                         <div style="margin-top: 20px" class="col-12 row profile-left-section">
                             <div class="col-12 profile-header-section1 float-right text-right">
-                                <h1>تجربه‌ها</h1>
+                                <h1>تجربه‌ها <img class="btn-light" src="{% static 'edit_logo.png' %}" alt="edit"
+                                                  style="width: 15px;height: 15px" data-toggle="modal"
+                                                  data-target="#experienceModal"></h1>
+
                                 <div class="border"></div>
                             </div>
                             <div class="col-12 text-right" style="direction: rtl">
@@ -64,7 +67,8 @@
                     {% if employee.eeeducation_set.all %}
                         <div style="margin-top: 20px" class="col-12 row profile-left-section">
                             <div class="col-12 profile-header-section1 float-right text-right">
-                                <h1>سوابق تحصیلی</h1>
+                                <h1>سوابق تحصیلی <img src="{% static 'edit_logo.png' %}" alt="edit"
+                                                      style="width: 15px;height: 15px"></h1>
                                 <div class="border"></div>
                             </div>
                             <div class="col-12 text-right" style="direction: rtl">
@@ -79,7 +83,8 @@
                     {% if employee.eecourse_set.all %}
                         <div style="margin-top: 20px" class="col-12 row profile-left-section">
                             <div class="col-12 profile-header-section1 float-right text-right">
-                                <h1>درس‌های مهم</h1>
+                                <h1>درس‌های مهم <img src="{% static 'edit_logo.png' %}" alt="edit"
+                                                     style="width: 15px;height: 15px"></h1>
                                 <div class="border"></div>
                             </div>
                             <div class="col-12 text-right" style="direction: rtl">
@@ -97,7 +102,8 @@
                     {% if employee.eehonor_set.all %}
                         <div style="margin-top: 20px" class="col-12 row profile-left-section">
                             <div class="col-12 profile-header-section1 float-right text-right">
-                                <h1>افتخارات</h1>
+                                <h1>افتخارات <img src="{% static 'edit_logo.png' %}" alt="edit"
+                                                  style="width: 15px;height: 15px"></h1>
                                 <div class="border"></div>
                             </div>
                             <div class="col-12 text-right" style="direction: rtl">
@@ -112,13 +118,15 @@
                     {% if employee.eeskill_set.all %}
                         <div style="margin-top: 20px" class="col-12 row profile-left-section">
                             <div class="col-12 profile-header-section1 float-right text-right">
-                                <h1>مهارت‌ها</h1>
+                                <h1>مهارت‌ها <img src="{% static 'edit_logo.png' %}" alt="edit"
+                                                  style="width: 15px;height: 15px"></h1>
                                 <div class="border"></div>
                             </div>
                             <div class="col-12 text-right" style="direction: rtl; font-size: 20px">
                                 <div class="row small" style="margin-left: 10px">
                                     {% for skill in employee.eeskill_set.all %}
-                                        <div style="text-align: center" class="{% cycle 'btn-success' 'btn-light' %} col-lg-4 col-md-6">
+                                        <div style="text-align: center"
+                                             class="{% cycle 'btn-success' 'btn-light' %} col-lg-4 col-md-6">
                                             {{ skill.name }}:{{ skill.level }}
                                         </div>
                                     {% endfor %}
@@ -149,10 +157,13 @@
                             <button id="btn-contact" (click)="clearModal()"
                                     data-toggle="modal" data-target="#contact"
                                     style="margin-top: 10px"
-                                    class="btn btn-outline-primary btn-sm btn-block">ارسال پیام
+                                    class="btn btn-outline-primary btn-sm btn-block">ارتباط
                             </button>
+                            <form style="margin-top: 5px" action="{% url 'employee CV' employee_id %}">
+                                <input type="submit" class="btn btn-outline-success btn-sm btn-block"
+                                       value="دریافت رزومه">
+                            </form>
 
-                            <button class="btn btn-outline-success btn-sm btn-block">دریافت رزومه</button>
                         </div>
                         <div class="col user-detail-row float-right" style="width: max-content">
                             <div class="col-md-12 col-sm-12 user-detail-section2 float-right"
@@ -187,3 +198,129 @@
 
 
 </body>
+
+<div class="modal" id="experienceModal" style="direction: rtl" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ویرایش تجربه‌ها</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="list-group">
+                        {% for experience in employee.eeexperience_set.all %}
+                            <span style="text-align: right" class="list-group-item">
+                            <span class="small">{{ experience.text }}</span>
+                            <span class="float-left">
+                                <button style="font-size: 8px" data-toggle="modal"
+                                        data-target="#experienceModalEdit{{ experience.pk }}"
+                                        class="btn btn-sm btn-outline-primary" data-dismiss="modal">ویرایش</button>
+                                <button style="font-size: 8px" data-toggle="modal"
+                                        data-target="#experienceModalDelete{{ experience.pk }}"
+                                        class="btn btn-sm btn-danger" data-dismiss="modal">حذف</button>
+                            </span>
+                            </span>
+                        {% endfor %}
+
+
+                        <button style="margin-top: 5px" data-toggle="modal" data-target="#experienceModalAdd"
+                                class="btn btn-outline-success btn-sm" data-dismiss="modal">اضافه کردن</button>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">بازگشت</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for experience in employee.eeexperience_set.all %}
+
+    <div class="modal" id="experienceModalDelete{{ experience.pk }}" style="direction: rtl" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div style="direction: rtl" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">حذف تجربه</h5>
+                </div>
+                <div style="text-align: right" class="modal-body small">
+                    آیا می‌خواهید این تجربه حذف شود؟
+                    <br>
+                    "{{ experience.text }}"
+                </div>
+                <div class="modal-footer">
+                    <button style="margin-left: 5px" type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                            data-target="#experienceModal" data-dismiss="modal">انصراف
+                    </button>
+                    <form action="{% url 'delete experience' employee_id experience.pk %}">
+                        <input type="submit" class="btn btn-outline-danger btn-block"
+                               value="حذف">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+
+{% for experience in employee.eeexperience_set.all %}
+
+    <div class="modal" id="experienceModalEdit{{ experience.pk }}" style="direction: rtl" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div style="direction: rtl" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ویرایش تجربه</h5>
+                </div>
+                <form method="post" action="{% url 'edit experience' employee_id experience.pk %}">
+                    {% csrf_token %}
+                    <div style="text-align: right" class="modal-body small">
+                        تجربه خود را ویرایش کنید.
+                        <br>
+                        <input style="alignment: center;width: 400px" name="text" type="text"
+                               value="{{ experience.text }}">
+                    </div>
+                    <div class="modal-footer">
+                        <button style="margin-left: 5px" type="button" class="btn btn-outline-secondary"
+                                data-toggle="modal"
+                                data-target="#experienceModal" data-dismiss="modal">انصراف
+                        </button>
+
+                        <input type="submit" class="btn btn-outline-danger btn-block"
+                               value="تایید ویرایش">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endfor %}
+
+<div class="modal" id="experienceModalAdd" style="direction: rtl" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div style="direction: rtl" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">اضافه کردن تجربه</h5>
+            </div>
+            <form method="post" action="{% url 'add experience' employee_id %}">
+                {% csrf_token %}
+                <div style="text-align: right" class="modal-body small">
+                    لطفا تجربه خود را وارد کنید
+                    <br>
+                    <input style="alignment: center;width: 400px" name="text" type="text"
+                           value="">
+                </div>
+                <div class="modal-footer">
+                    <button style="margin-left: 5px" type="button" class="btn btn-outline-secondary"
+                            data-toggle="modal"
+                            data-target="#experienceModal" data-dismiss="modal">انصراف
+                    </button>
+
+                    <input type="submit" class="btn btn-outline-danger btn-block"
+                           value="اضافه کردن">
+            </form>
+        </div>
+    </div>
+</div>

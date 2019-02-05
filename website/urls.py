@@ -1,11 +1,11 @@
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
-
-
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
+    path('signup/',views.signup),
+    path('logout/',auth_views.LogoutView.as_view(template_name='website/global_homepage.html')),
+    path('login/',auth_views.LoginView.as_view(template_name='website/login.html'),name='login'),
     path('', views.global_homepage, name='global homepage'),
     path('SignInEmployee/', views.sign_in_employee, name='Employee Sign In'),
     path('SignInEmployer/', views.sign_in_employer, name='Employer Sign In'),
@@ -22,5 +22,11 @@ urlpatterns = [
     path('verifyFormEmployee/<str:mail>/<str:stdid>', views.verify_form_employee, name='verify form employee'),
     path('verifyFormEmployer/<str:mail>/', views.verify_form_employer, name='verify form employer'),
     path('SignUpEmployee/', views.sign_up_employee, name='Sign Up Employee'),
-    path('employeeProfileTemp/<str:employee_name>', views.employee_profile_temp, name='employee profile temp'),
-]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+    path('<int:employee_id>/employee/get_pdf', views.get_pdf, name='employee CV'),
+    path('<int:employee_id>/employee/delete_experience/<int:experience_pk>', views.delete_experience, name='delete experience'),
+    path('<int:employee_id>/employee/edit_experience/<int:experience_pk>', views.edit_experience,
+         name='edit experience'),
+    path('<int:employee_id>/employee/add_experience/', views.add_experience,
+         name='add experience')
+
+]

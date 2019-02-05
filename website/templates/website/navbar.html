@@ -6,7 +6,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-fixed-top big-nav" >
+<nav class="navbar navbar-fixed-top big-nav">
     <div class="container-fluid">
         <div class="navbar-header navbar-right">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -14,7 +14,7 @@
                 <span class="icon-bar" style="background-color: #337ab7"></span>
                 <span class="icon-bar" style="background-color: #337ab7"></span>
             </button>
-            <div class="navbar-brand" >
+            <div class="navbar-brand">
                 <img id="logo" src="{% static 'logo.png' %}">
             </div>
         </div>
@@ -32,13 +32,28 @@
                 <li class="dropdown-links"><a href="#">صفحه دو</a></li>
                 <li class="dropdown-links"><a href="">صفحه سه</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-left" id="leftNavbar" style="text-align: left;">
-                <li class="log-in-button" style="" data-toggle="modal" data-target="#signIn"><a href="#" style=""><span class="glyphicon glyphicon-log-in"></span>
-                    ورود</a></li>
-                <li class="sign-up-button" style="" data-toggle="modal" data-target="#signUp"><a href="#" style="" id="sign-up-id"><span
-                        class="glyphicon glyphicon-user"></span> ثبت نام</a></li>
+            {% if request.user.is_authenticated %}
+                <ul class="nav navbar-nav navbar-left" id="leftNavbar" style="text-align: left;">
+                    <li class="log-out-button" style="" data-toggle="modal" data-target="#signIn">
+                        <a href="/website/logout" style=""><span class="glyphicon glyphicon-log-in"></span>
+                        خروج</a>
+                    </li>
 
-            </ul>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-left" id="leftNavbar" style="text-align: left;">
+                    <li class="log-in-button" style="" data-toggle="modal" data-target="#signIn"><a
+                            href="/website/login"
+                            style=""><span
+                            class="glyphicon glyphicon-log-in"></span>
+                        ورود</a></li>
+                    <li class="sign-up-button" style="" data-toggle="modal" data-target="#signUp"><a href="/website/signup" style=""
+                                                                                                     id="sign-up-id"><span
+                            class="glyphicon glyphicon-user"></span> ثبت نام</a></li>
+
+                </ul>
+            {% endif %}
+
         </div>
     </div>
 </nav>
@@ -48,15 +63,15 @@
 
 
 <table class="table">
-{#  <thead>#}
-{#    <tr>#}
-{#      <th scope="col">#</th>#}
-{#      <th scope="col">First</th>#}
-{#      <th scope="col">Last</th>#}
-{#      <th scope="col">Handle</th>#}
-{#    </tr>#}
-  </thead>
-  <tbody>
+    {#  <thead>#}
+    {#    <tr>#}
+    {#      <th scope="col">#</th>#}
+    {#      <th scope="col">First</th>#}
+    {#      <th scope="col">Last</th>#}
+    {#      <th scope="col">Handle</th>#}
+    {#    </tr>#}
+    </thead>
+    <tbody>
     <tr>
         <th scope="row" align="middle"></th>
         <td align="middle">
@@ -65,246 +80,257 @@
 
 
             <!-- Modal -->
-            <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="signInTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#employerSignIn">Employer</button>
-                      <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#workseekerSignIn">Workseeker</button>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-<!-- #############################################################################################################################-->
-          <!-- Employer Sign In modal -->
-            <div class="modal fade" id="employerSignIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="employerSignInTitle">Employer Sign In</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-
-                  <form action="{% url 'Employer Sign In' %}" method="post">
-                    {% csrf_token %}
-
-                  <div class="modal-body">
-
-
-                        <input type="text" name="username" id="username">
-                        <label for="username"> "username" </label><br>
-
-                        <input type="text" name="password" value="password" id="username">
-                        <label for="password"> "password" </label><br>
-                        <a href="{% url 'employee profile' %}">فراموشی رمز عبور</a>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                    <input type="submit" value="Sign In">
-
-                  </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-<!-- #############################################################################################################################-->
-            <!-- Work Seeker Sign In modal -->
-            <div class="modal fade" id="workseekerSignIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="workseekerSignInTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-
-                  <form action="{% url 'Employee Sign In' %}" method="post">
-                    {% csrf_token %}
-
-                  <div class="modal-body">
-
-
-                        <input type="text" name="username" id="username">
-                        <label for="username"> "username" </label><br>
-
-                        <input type="text" name="password" value="password" id="username">
-                        <label for="password"> "password" </label><br>
-                        <a href="{% url 'employee profile' %}">فراموشی رمز عبور</a>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                    <input type="submit" value="Sign In">
-
-                  </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-      </td>
-
-<!-- #############################################################################################################################-->
-<!-- #############################################################################################################################-->
-<!-- #############################################################################################################################-->
-
-      <td align="middle">
-          <!-- Button trigger sign up modal -->
-
-             <!-- Modal -->
-{#                    -------------------------------------------------------------------------------------------#}
-                    <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="signUpTitle">Modal title</h5>
+            <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signInTitle">Modal title</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">&times;</span>
                             </button>
-                          </div>
-                          <div class="modal-body">
-
-                            <form action="{% url 'get mail' 1 "None"%}" method="post"> {% csrf_token %}
-                              <input type="submit" value="Employer">
-                            </form>
-                            <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#employeeSignUp">Employee</button>
-                          </div>
-                          <div class="modal-footer">
+                        </div>
+                        <div class="modal-body">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#employerSignIn">Employer
+                            </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#workseekerSignIn">Workseeker
+                            </button>
+                        </div>
+                        <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                          </div>
                         </div>
-                      </div>
                     </div>
+                </div>
+            </div>
 
-        <!-- #############################################################################################################################-->
-                    <!-- Employee Sign Up modal -->
-                    <div class="modal fade" id="employeeSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="employeeSignUpTitle">Modal title</h5>
+            <!-- #############################################################################################################################-->
+            <!-- Employer Sign In modal -->
+            <div class="modal fade" id="employerSignIn" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="employerSignInTitle">Employer Sign In</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">&times;</span>
                             </button>
-                          </div>
+                        </div>
 
-                          <form action="{% url 'Sign Up Employee' %}" method="post">
+                        <form action="{% url 'Employer Sign In' %}" method="post">
                             {% csrf_token %}
 
-                          <div class="modal-body">
+                            <div class="modal-body">
 
 
-                                <input type="text" name="stdid" id="stdid" value= "ex:94109595">
+                                <input type="text" name="username" id="username">
+                                <label for="username"> "username" </label><br>
+
+                                <input type="text" name="password" value="password" id="username">
+                                <label for="password"> "password" </label><br>
+                                <a href="{% url 'employee profile' %}">فراموشی رمز عبور</a>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                <input type="submit" value="Sign In">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- #############################################################################################################################-->
+            <!-- Work Seeker Sign In modal -->
+            <div class="modal fade" id="workseekerSignIn" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="workseekerSignInTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <form action="{% url 'Employee Sign In' %}" method="post">
+                            {% csrf_token %}
+
+                            <div class="modal-body">
+
+
+                                <input type="text" name="username" id="username">
+                                <label for="username"> "username" </label><br>
+
+                                <input type="text" name="password" value="password" id="username">
+                                <label for="password"> "password" </label><br>
+                                <a href="{% url 'employee profile' %}">فراموشی رمز عبور</a>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                <input type="submit" value="Sign In">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </td>
+
+        <!-- #############################################################################################################################-->
+        <!-- #############################################################################################################################-->
+        <!-- #############################################################################################################################-->
+
+        <td align="middle">
+            <!-- Button trigger sign up modal -->
+
+            <!-- Modal -->
+            {#                    -------------------------------------------------------------------------------------------#}
+            <div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="signUpTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form action="{% url 'get mail' 1 "None" %}" method="post"> {% csrf_token %}
+                                <input type="submit" value="Employer">
+                            </form>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#employeeSignUp">Employee
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- #############################################################################################################################-->
+            <!-- Employee Sign Up modal -->
+            <div class="modal fade" id="employeeSignUp" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="employeeSignUpTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <form action="{% url 'Sign Up Employee' %}" method="post">
+                            {% csrf_token %}
+
+                            <div class="modal-body">
+
+
+                                <input type="text" name="stdid" id="stdid" value="ex:94109595">
                                 <label for="stdid"> Student ID </label><br>
 
 
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                            <input type="submit" value="Sign In">
+                                <input type="submit" value="Sign In">
 
-                          </div>
-                          </form>
-                        </div>
-                      </div>
+                            </div>
+                        </form>
                     </div>
-
-{#                    ----------------------------------------------------#}
-
-<!-- #############################################################################################################################-->
-          <!-- Employer Sign In modal -->
-            <div class="modal fade" id="employerSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="employerSignUpTitle">Employer Sign In</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-
-                  <form action="{% url 'Employer Sign In' %}" method="post">
-                    {% csrf_token %}
-
-                  <div class="modal-body">
-
-
-                        <input type="text" name="username" id="username">
-                        <label for="username"> "username" </label><br>
-
-                        <input type="text" name="password" value="password" id="username">
-                        <label for="password"> "password" </label><br>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                    <input type="submit" value="Sign In">
-
-                  </div>
-                  </form>
                 </div>
-              </div>
             </div>
-<!-- #############################################################################################################################-->
+
+            {#                    ----------------------------------------------------#}
+
+            <!-- #############################################################################################################################-->
+            <!-- Employer Sign In modal -->
+            <div class="modal fade" id="employerSignUp" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="employerSignUpTitle">Employer Sign In</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <form action="{% url 'Employer Sign In' %}" method="post">
+                            {% csrf_token %}
+
+                            <div class="modal-body">
+
+
+                                <input type="text" name="username" id="username">
+                                <label for="username"> "username" </label><br>
+
+                                <input type="text" name="password" value="password" id="username">
+                                <label for="password"> "password" </label><br>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                <input type="submit" value="Sign In">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- #############################################################################################################################-->
             <!-- Work Seeker Sign In modal -->
-            <div class="modal fade" id="workseekerSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="workseekerSignUpTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
+            <div class="modal fade" id="workseekerSignUp" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="workseekerSignUpTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-                  <form action="{% url 'Employee Sign In' %}" method="post">
-                    {% csrf_token %}
+                        <form action="{% url 'Employee Sign In' %}" method="post">
+                            {% csrf_token %}
 
-                  <div class="modal-body">
+                            <div class="modal-body">
 
 
-                        <input type="text" name="username" id="username">
-                        <label for="username"> "username" </label><br>
+                                <input type="text" name="username" id="username">
+                                <label for="username"> "username" </label><br>
 
-                        <input type="text" name="password" value="password" id="username">
-                        <label for="password"> "password" </label><br>
+                                <input type="text" name="password" value="password" id="username">
+                                <label for="password"> "password" </label><br>
 
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                    <input type="submit" value="Sign In">
+                                <input type="submit" value="Sign In">
 
-                  </div>
-                  </form>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </div>
             </div>
 
 
-
-
-      </td>
+        </td>
     </tr>
 
-  </tbody>
+    </tbody>
 </table>
