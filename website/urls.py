@@ -1,4 +1,7 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 from . import views
 
@@ -19,4 +22,5 @@ urlpatterns = [
     path('verifyFormEmployee/<str:mail>/<str:stdid>', views.verify_form_employee, name='verify form employee'),
     path('verifyFormEmployer/<str:mail>/', views.verify_form_employer, name='verify form employer'),
     path('SignUpEmployee/', views.sign_up_employee, name='Sign Up Employee'),
-]
+    path('employeeProfileTemp/<str:employee_name>', views.employee_profile_temp, name='employee profile temp'),
+]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

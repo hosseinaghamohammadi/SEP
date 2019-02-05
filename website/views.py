@@ -4,6 +4,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 
 from .models import User, Employer, Employee, Phone
+from .apps import WebsiteConfig
+from sep.settings import BASE_DIR
+from django.core.files.storage import FileSystemStorage
 
 
 def get_mail(request, type, stdid):
@@ -189,7 +192,9 @@ def sign_up(request, type, attr, page):
 
 
 def employee_temp(request):
-    return render(request, 'website/employee_profile_temp.html')
+    ee = get_object_or_404(Employee, name = "salam")
+    print(ee.family_name)
+    return render(request, 'website/employee_profile_temp.html', {"employee":ee})
 
 
 def edit_profile(request):
@@ -197,7 +202,8 @@ def edit_profile(request):
 
 
 def global_homepage(request):
-    return render(request, 'website/global_homepage.html')
+    # return render(request, 'website/edit_profile.html')
+    return render(request, 'website/employee_home.html', {})
 
 
 def employer_temp(request):
@@ -211,3 +217,17 @@ def employee_home(request):
 def employee(request, employee_id):
     ee = get_object_or_404(Employee, id=employee_id)
     return render(request, 'website/employee_profile.html', {'employee': ee})
+
+
+def employee_profile_temp(request, employee_name):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        print(myfile)
+        ee = get_object_or_404(Employee, name = employee_name)
+        # result = urllib.urlretrieve(image_url)
+        ee.image = myfile
+        print(ee.image.url)
+
+        ee.save()
+        return render(request, 'website/employee_profile_temp.html', {'app_name':WebsiteConfig.name,'employee': ee})
+    return render(request, 'website/employee_profile_temp.html')

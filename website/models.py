@@ -22,6 +22,7 @@ class Employee(models.Model):
     gender_choices = [("1", "MALE"), ("2", "FEMALE")]
     gender = models.CharField(max_length=9, choices=gender_choices, default="FEMALE")
     birth_date = models.DateField()
+    image = models.ImageField(upload_to="profiles" , blank= True, null= True)
 
     def __str__(self):
         return self.name + " " + self.family_name
