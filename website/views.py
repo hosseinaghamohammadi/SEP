@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
-from weasyprint import HTML
+# from weasyprint import HTML
 
 from website.forms import SignUpForm
 from .models import User, Employer, Employee, Phone
@@ -14,25 +14,25 @@ from django.core.files.storage import FileSystemStorage
 
 
 
-def get_mail(request, type, stdid):
-    return render(request, 'website/getEmail.html', {"type":type, "stdid":stdid})
-
-
-def verify_mail(request, type, stdid):
-    mail = request.POST['mail']
-
-    user = User.objects.filter(mail=mail)
-    if user.count() > 0:
-        return render(request, 'website/getEmail.html', {
-            'error_message': "This mail Already Exists".format(type),
-            'type':type,
-            "stdid": stdid,
-        })
-
-    if type == 2:
-        return redirect('fill form employee', mail, stdid)
-    else:
-        return redirect('fill form employer', mail)
+# def get_mail(request, type, stdid):
+#     return render(request, 'website/getEmail.html', {"type":type, "stdid":stdid})
+#
+#
+# # def verify_mail(request, type, stdid):
+# #     mail = request.POST['mail']
+# #
+# #     user = User.objects.filter(mail=mail)
+# #     if user.count() > 0:
+# #         return render(request, 'website/getEmail.html', {
+# #             'error_message': "This mail Already Exists".format(type),
+# #             'type':type,
+# #             "stdid": stdid,
+# #         })
+# #
+# #     if type == 2:
+# #         return redirect('fill form employee', mail, stdid)
+# #     else:
+# #         return redirect('fill form employer', mail)
 
 
 def fill_form_employee(request, mail, stdid):
@@ -196,9 +196,9 @@ def sign_up(request, type, attr, page):
 
 
 def employee_temp(request):
-    ee = get_object_or_404(Employee, name = "salam")
+    ee = get_object_or_404(Employee, name = "saas")
     print(ee.family_name)
-    return render(request, 'website/employee_profile_temp.html', {"employee":ee})
+    return render(request, 'website/employee_profile_temp.html',  {'app_name':WebsiteConfig.name,'employee': ee})
 
 
 def edit_profile(request):
@@ -219,7 +219,7 @@ def employee_home(request):
 
 
 def employee(request, employee_id):
-    ee = get_object_or_404(Employee, id=employee_id)
+    ee = get_object_or_404(Employee, id = employee_id)
     return render(request, 'website/employee_profile.html', {'employee': ee, 'employee_id': employee_id})
 
 
@@ -278,6 +278,7 @@ def employee_profile_temp(request, employee_name):
         # result = urllib.urlretrieve(image_url)
         ee.image = myfile
         print(ee.image.url)
+        print(ee.image)
 
         ee.save()
         return render(request, 'website/employee_profile_temp.html', {'app_name':WebsiteConfig.name,'employee': ee})

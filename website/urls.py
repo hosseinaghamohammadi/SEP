@@ -15,8 +15,8 @@ urlpatterns = [
     path('employer/', views.employer_temp, name='employer profile'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('employee_home/', views.employee_home, name='employee homepage'),
-    path('getMail/<int:type>/<str:stdid>', views.get_mail, name='get mail'),
-    path('verifyMail/<int:type>/<str:stdid>', views.verify_mail, name='verify mail'),
+    # path('getMail/<int:type>/<str:stdid>', views.get_mail, name='get mail'),
+    # path('verifyMail/<int:type>/<str:stdid>', views.verify_mail, name='verify mail'),
     path('fillFormEmployee/<str:mail>/<str:stdid>', views.fill_form_employee, name='fill form employee'),
     path('fillFormEmployer/<str:mail>', views.fill_form_employer, name='fill form employer'),
     path('verifyFormEmployee/<str:mail>/<str:stdid>', views.verify_form_employee, name='verify form employee'),
@@ -27,6 +27,8 @@ urlpatterns = [
     path('<int:employee_id>/employee/edit_experience/<int:experience_pk>', views.edit_experience,
          name='edit experience'),
     path('<int:employee_id>/employee/add_experience/', views.add_experience,
-         name='add experience')
+         name='add experience'),
+
+    path('employee/<str:employee_name>', views.employee_profile_temp, name='employee profile temp'),
 
 ]

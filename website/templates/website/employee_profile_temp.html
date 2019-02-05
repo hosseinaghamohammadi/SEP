@@ -154,19 +154,18 @@
                     <div class="row" style="background-color: #eff9f6">
 
                         <div class="col-md-12 col-sm-12 col-xs-12 user-image text-center" >
-                            <img src="\{{ app_name }}{{ employee.image.url}}">
+                            <img src="/{{app_name}}{{ employee.image.url}}">
 
 
 
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 text-center follow">
-                            <img src= "\{{ app_name }}{{ employee.image.url}}" >#}
-                            <form action="{% url 'employee profile temp' "salam"%}" method="post" enctype="multipart/form-data" >
+                            <img src= "/{{ app_name }}{{ employee.image.path }}" >
+                            <form action="{% url 'employee profile temp' 'saas' %}" method="post" enctype="multipart/form-data" >
                                 {% csrf_token %}
                                 <input type="file" name="myfile">
                                 <button type="submit">Upload</button>
                               </form>
-                            <img src="https://www.desktopbackground.org/p/2015/05/26/954182_auroras-wallpapers-archives-page-20-of-27-widewallpaper-info_1920x1080_h.jpg">#}
                             <ul class="list-group text-center">
                                 <li class="list-group-item border-success"><b>امین بهجتی</b></li>
 
