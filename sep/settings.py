@@ -40,14 +40,15 @@ SECRET_KEY = 'kubfp*ianmc838q4agrokr@^@ky^)v53(vvk(+1&q*+jhbu76^'
 # Application definition
 
 INSTALLED_APPS = [
-    'website.apps.WebsiteConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'visits',
+    'django.contrib.humanize',
+    'crispy_forms',
+    'website',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +134,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
+
+AUTH_USER_MODEL = 'website.MyUser'
 
 LANGUAGE_CODE = 'en-us'
 
