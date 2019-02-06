@@ -41,15 +41,17 @@ class Employer(models.Model):
     employer_name = models.CharField(max_length=200, default="dummy")
     employer_address = models.CharField(max_length=400, default="dummy")
     employer_website = models.URLField(default="google.com")
+    short_description = models.CharField(max_length=200, default="nothing")
+    long_description = models.CharField(max_length=800, default="nothing")
     rate = models.FloatField(default=1.1)
 
 
 class EmpOff(models.Model):
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
-    description = models.CharField(max_length=200, default="dummy")
-    status_choices = [("1", "AVAILABLE"), ("2", "NOT AVAILABLE")]
-    status = models.CharField(max_length=20, choices=status_choices, default="AVAILABLE")
-    salary = models.IntegerField(default=1000)
+    title = models.CharField(max_length=50, default="Title")
+    position = models.CharField(max_length=100, default="At witch position?")
+    short_description = models.CharField(max_length=200, default="dummy")
+    long_description = models.CharField(max_length=400, default="Enter your details.")
 
 
 class Requirement(models.Model):

@@ -203,7 +203,7 @@ def global_homepage(request):
 
 
 def employer_temp(request):
-    return render(request, 'website/employer_profile.html')
+    return render(request, 'website/employer_profile_temp.html')
 
 
 def employee_home(request):
@@ -249,3 +249,8 @@ def add_experience(request, employee_id):
     if request.method == "POST":
         EEExperience.objects.create(employee=get_object_or_404(Employee, id=employee_id), text=request.POST['text'])
     return HttpResponseRedirect(reverse('employee page', args=(employee_id,)))
+
+
+def employer(request, employer_id):
+    er = get_object_or_404(Employer, id = employer_id)
+    return render(request, 'website/employer_profile.html', {'employer': er, 'employer_id': employer_id})
