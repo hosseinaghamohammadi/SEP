@@ -1,8 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/employer/', views.EmployerSignUpView.as_view(), name='employer_signup'),
+    path('accounts/signup/employee/', views.EmployeeSignUpView.as_view(), name='employee_signup'),
     path('signup/',views.signup),
     path('logout/',auth_views.LogoutView.as_view(template_name='website/global_homepage.html')),
     path('login/',auth_views.LoginView.as_view(template_name='website/login.html'),name='login'),
@@ -10,7 +13,7 @@ urlpatterns = [
     path('SignInEmployee/', views.sign_in_employee, name='Employee Sign In'),
     path('SignInEmployer/', views.sign_in_employer, name='Employer Sign In'),
     path('<int:employee_id>/employee/', views.employee, name='employee page'),
-    path('<int:employer_id>/employer/', views.employer_temp, name='employer page'),
+    path('<int:employer_id>/employer/', views.employer, name='employer page'),
     path('employee/', views.employee_temp, name='employee profile'),
     path('employer/', views.employer_temp, name='employer profile'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
@@ -32,6 +35,6 @@ urlpatterns = [
     path('employee/<str:employee_name>', views.employee_profile_temp, name='employee profile temp'),
 
 
-    path('searchPage/', views.search_page, name='search page'),
+    path('searchPage/<int:employer_id>', views.search_page, name='search page'),
 
 ]

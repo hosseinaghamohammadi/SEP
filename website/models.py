@@ -1,10 +1,17 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.db import models
 
 
+class MyUser(AbstractUser):
+    is_employer = models.BooleanField(default=False)
+    is_employee = models.BooleanField(default=False)
+    class Meta(AbstractUser.Meta):
+        swappable = 'AUTH_USER_MODEL'
+
+
 class Employee(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(MyUser, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=200, default="dummy")
     family_name = models.CharField(max_length=200, default="dummy")
     studentID = models.CharField(max_length=8, default="95109253")
@@ -28,20 +35,22 @@ class Phone(models.Model):
 
 
 class Employer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
     employer_name = models.CharField(max_length=200, default="dummy")
     employer_address = models.CharField(max_length=400, default="dummy")
     employer_website = models.URLField(default="google.com")
+    short_description = models.CharField(max_length=200, default="nothing")
+    long_description = models.CharField(max_length=800, default="nothing")
     rate = models.FloatField(default=1.1)
 
 
 class EmpOff(models.Model):
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
-    description = models.CharField(max_length=200, default="dummy")
-    status_choices = [("1", "AVAILABLE"), ("2", "NOT AVAILABLE")]
-    status = models.CharField(max_length=20, choices=status_choices, default="AVAILABLE")
-    salary = models.IntegerField(default=1000)
+    title = models.CharField(max_length=50, default="Title")
+    position = models.CharField(max_length=100, default="At witch position?")
+    short_description = models.CharField(max_length=200, default="dummy")
+    long_description = models.CharField(max_length=400, default="Enter your details.")
 
 
 class Requirement(models.Model):
@@ -61,7 +70,7 @@ class JobRequest(models.Model):
 
 
 class SystemAdmin(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
 
 
 class EEExperience(models.Model):
