@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Employee(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, default="dummy")
     family_name = models.CharField(max_length=200, default="dummy")
     studentID = models.CharField(max_length=8, default="95109253")
@@ -28,7 +28,7 @@ class Phone(models.Model):
 
 
 class Employer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
     employer_name = models.CharField(max_length=200, default="dummy")
     employer_address = models.CharField(max_length=400, default="dummy")

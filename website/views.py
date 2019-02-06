@@ -5,12 +5,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
 # from weasyprint import HTML
-
 from website.forms import SignUpForm
-from .models import User, Employer, Employee, Phone
+from .models import User, Employer, Employee, Phone, EEExperience
 from .apps import WebsiteConfig
 from sep.settings import BASE_DIR
 from django.core.files.storage import FileSystemStorage
+from django.db.models import Q
 
 
 
@@ -207,7 +207,7 @@ def edit_profile(request):
 
 def global_homepage(request):
     # return render(request, 'website/edit_profile.html')
-    return render(request, 'website/global_homepage.html', {})
+    return render(request, 'website/search_page.html', {})
 
 
 def employer_temp(request):
@@ -264,6 +264,7 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
+
             return redirect('/website')
     else:
         form = SignUpForm()
@@ -283,3 +284,10 @@ def employee_profile_temp(request, employee_name):
         ee.save()
         return render(request, 'website/employee_profile_temp.html', {'app_name':WebsiteConfig.name,'employee': ee})
     return render(request, 'website/employee_profile_temp.html')
+
+def search_page(request):
+    keyword = request.POST['search keyword']
+    employee_list = Employee.objects.filter(Q(eeskill__name__contains=keyword) | Q(eeeducation__text__contains=keyword)
+                            | Q(eeactivity__text__contains=keyword) | Q(eeexperience__text__contains=keyword)
+                            | Q(eeinterest__text__contains=keyword))
+    return render(request, 'website/search_page.html', {'employee_list': employee_list})

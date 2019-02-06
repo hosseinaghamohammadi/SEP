@@ -31,4 +31,7 @@ urlpatterns = [
 
     path('employee/<str:employee_name>', views.employee_profile_temp, name='employee profile temp'),
 
+
+    path('searchPage/', views.search_page, name='search page'),
+
 ]
