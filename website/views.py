@@ -7,10 +7,9 @@ from django.urls import reverse
 # from weasyprint import HTML
 from .models import  Employer, Employee, Phone, EEExperience
 from django.views.generic import CreateView
-# from weasyprint import HTML
+from weasyprint import HTML
 from .forms import *
 from .models import *
-from django.contrib.auth import login
 from .apps import WebsiteConfig
 from sep.settings import BASE_DIR
 from django.core.files.storage import FileSystemStorage
@@ -123,6 +122,7 @@ def verify_form_employer(request, mail):
         })
 
     return HttpResponseRedirect(reverse('employer page'))
+
 
 
 def sign_up_employee(request):
@@ -334,3 +334,75 @@ class EmployeeSignUpView(CreateView):
         login(self.request, user)
         return redirect('/')
 
+
+
+def employer(request, employer_id):
+    er = get_object_or_404(Employer, id = employer_id)
+    return render(request, 'website/employer_profile.html', {'employer': er, 'employer_id': employer_id})
+
+
+class EmployerSignUpView(CreateView):
+    model = MyUser
+    form_class = EmployerSignUpForm
+    template_name = 'website/signup.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'employer'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/')
+
+class EmployeeSignUpView(CreateView):
+    model = MyUser
+    form_class = EmployeeSignUpForm
+    template_name = 'website/signup.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'employee'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/')
+
+
+def delete_off(request, employer_id, empoff_pk):
+    empoff = get_object_or_404(EmpOff, pk=empoff_pk)
+    empoff.delete()
+    return HttpResponseRedirect(reverse('employer page', args=(employer_id,)))
+
+
+def edit_off(request, employer_id, empoff_pk):
+    empoff = get_object_or_404(EmpOff, pk=empoff_pk)
+    if request.method == "POST":
+        print(request.POST)
+        empoff.title = request.POST['title']
+        empoff.position = request.POST['position']
+        empoff.short_description = request.POST['short_description']
+        empoff.long_description = request.POST['long_description']
+        empoff.save()
+
+    return HttpResponseRedirect(reverse('employer page', args=(employer_id,)))
+
+
+def add_off(request, employer_id):
+    if request.method == "POST":
+        EmpOff.objects.create(employer=get_object_or_404(Employer, id=employer_id),
+                              title=request.POST['title'], position=request.POST['position'],
+                              short_description=request.POST['short_description'],
+                              long_description=request.POST['long_description'])
+    return HttpResponseRedirect(reverse('employer page', args=(employer_id,)))
+
+def rate_off(request, employer_id, empoff_pk):
+    empoff = get_object_or_404(EmpOff, pk=empoff_pk)
+    if request.method == "POST":
+        print(request.POST)
+        empoff.rate = ((empoff.rate * empoff.vote_count) + request.POST['num'])
+        empoff.vote_count = empoff.vote_count + 1
+        empoff.save()
+
+    return HttpResponseRedirect(reverse('employer page', args=(employer_id,)))

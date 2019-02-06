@@ -1,5 +1,7 @@
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from django.urls import path
+
 from . import views
 
 urlpatterns = [
@@ -26,7 +28,8 @@ urlpatterns = [
     path('verifyFormEmployer/<str:mail>/', views.verify_form_employer, name='verify form employer'),
     path('SignUpEmployee/', views.sign_up_employee, name='Sign Up Employee'),
     path('<int:employee_id>/employee/get_pdf', views.get_pdf, name='employee CV'),
-    path('<int:employee_id>/employee/delete_experience/<int:experience_pk>', views.delete_experience, name='delete experience'),
+    path('<int:employee_id>/employee/delete_experience/<int:experience_pk>', views.delete_experience,
+         name='delete experience'),
     path('<int:employee_id>/employee/edit_experience/<int:experience_pk>', views.edit_experience,
          name='edit experience'),
     path('<int:employee_id>/employee/add_experience/', views.add_experience,
@@ -36,5 +39,14 @@ urlpatterns = [
 
 
     path('searchPage/<int:employer_id>', views.search_page, name='search page'),
+
+    path('<int:employer_id>/employer/delete_off/<int:empoff_pk>', views.delete_off,
+         name='delete off'),
+    path('<int:employer_id>/employer/edit_off/<int:empoff_pk>', views.edit_off,
+         name='edit off'),
+    path('<int:employer_id>/employer/add_off/', views.add_off,
+         name='add off'),
+    path('<int:employer_id>/employer/rate_off/<int:empoff_pk>', views.rate_off,
+         name='rate off'),
 
 ]

@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -11,7 +11,7 @@ class MyUser(AbstractUser):
 
 
 class Employee(models.Model):
-    user = models.OneToOneField(MyUser, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, default="dummy")
     family_name = models.CharField(max_length=200, default="dummy")
     studentID = models.CharField(max_length=8, default="95109253")
@@ -51,6 +51,8 @@ class EmpOff(models.Model):
     position = models.CharField(max_length=100, default="At witch position?")
     short_description = models.CharField(max_length=200, default="dummy")
     long_description = models.CharField(max_length=400, default="Enter your details.")
+    rate = models.FloatField(default=10.0)
+    vote_count = models.IntegerField(default=0)
 
 
 class Requirement(models.Model):
@@ -70,7 +72,7 @@ class JobRequest(models.Model):
 
 
 class SystemAdmin(models.Model):
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class EEExperience(models.Model):

@@ -252,9 +252,9 @@
                                                 <div style="height: 200px" class="container1" style="">
                                                     <h2>{{ empoff.title }}</h2>
                                                     <p class="title">{{ empoff.position }}</p>
+                                                    <p data-toggle="modal" data-target="#rateOffModal{{ empoff.pk }}" class="small btn-outline-success">امتیاز: {{ empoff.rate }} از {{ empoff.vote_count }} نفر</p>
 
                                                     <p class="small">{{ empoff.short_description }}</p>
-
                                                 </div>
 
                                                 <button data-toggle="modal" data-target="#offDescModal{{ empoff.pk }}"
@@ -274,7 +274,7 @@
                     <div class="row">
 
                         <div class="col-md-12 col-sm-12 col-xs-12 user-image text-center">
-                            <img src="http://ovnline.focusky.com/ndln/npcf/files/extfiles/ext_0201642217399977.png"
+                            <img src="http://online.focusky.com/ndln/npcf/files/extfiles/ext_0201642217399977.png"
                                  class="rounded-circle img-fluid img-thumbnail mx-auto" alt="user_img">
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 text-center follow">
@@ -437,7 +437,11 @@
                                     style="margin-top: 10px"
                                     class="btn btn-outline-primary btn-sm btn-block">نظردهی
                             </button>
-
+                            <button
+                                    data-toggle="modal" data-target="#offsModal"
+                                    style="margin-top: 10px"
+                                    class="btn btn-outline-primary btn-sm btn-block">ویرایش فرصت‌های شغلی
+                            </button>
                             <button class="btn btn-outline-success btn-sm btn-block">ارسال پیام</button>
                         </div>
                         <div class="col user-detail-row float-right" style="width: max-content">
@@ -455,9 +459,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -494,10 +495,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 </body>
 
 
@@ -532,7 +529,6 @@
         </div>
     </div>
 
-
 {% endfor %}
 
 
@@ -565,3 +561,178 @@
 {% endfor %}
 
 
+
+<div class="modal" id="offsModal" style="direction: rtl" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ویرایش فرصت‌های شغلی</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="list-group">
+                        {% for empoff in employer.empoff_set.all %}
+                            <span style="text-align: right" class="list-group-item">
+                            <span class="small">{{ empoff.title }}</span>
+                            <span class="float-left">
+                                <button style="font-size: 8px" data-toggle="modal"
+                                        data-target="#offModalEdit{{ empoff.pk }}"
+                                        class="btn btn-sm btn-outline-primary" data-dismiss="modal">ویرایش</button>
+                                <button style="font-size: 8px" data-toggle="modal"
+                                        data-target="#offModalDelete{{ empoff.pk }}"
+                                        class="btn btn-sm btn-danger" data-dismiss="modal">حذف</button>
+                            </span>
+                            </span>
+                        {% endfor %}
+
+
+                        <button style="margin-top: 5px" data-toggle="modal" data-target="#offModalAdd"
+                                class="btn btn-outline-success btn-sm" data-dismiss="modal">اضافه کردن</button>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">بازگشت</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% for empoff in employer.empoff_set.all %}
+
+    <div class="modal" id="offModalDelete{{ empoff.pk }}" style="direction: rtl" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div style="direction: rtl" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">حذف فرصد شغلی</h5>
+                </div>
+                <div style="text-align: right" class="modal-body small">
+                    آیا می‌خواهید این فرصت شغلی حذف شود؟
+                    <br>
+                    "{{ empoff.title }}"
+                </div>
+                <div class="modal-footer">
+                    <button style="margin-left: 5px" type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                            data-target="#offsModal" data-dismiss="modal">انصراف
+                    </button>
+                    <form action="{% url 'delete off' employer_id empoff.pk %}">
+                        <input type="submit" class="btn btn-outline-danger btn-block"
+                               value="حذف">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+
+{% for empoff in employer.empoff_set.all %}
+
+    <div class="modal" id="offModalEdit{{ empoff.pk }}" style="direction: rtl" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div style="direction: rtl" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ویرایش فرصت شغلی</h5>
+                </div>
+                <form method="post" action="{% url 'edit off' employer_id empoff.pk %}">
+                    {% csrf_token %}
+                    <div style="text-align: right" class="modal-body small">
+                        فرصت شغلی خود را ویرایش کنید.
+                        <br>
+                        <input style="alignment: center;width: 400px" name="title" type="text"
+                               value="{{ empoff.title }}">
+                        <input style="alignment: center;width: 400px" name="position" type="text"
+                               value="{{ empoff.position }}">
+                        <input style="alignment: center;width: 400px" name="short_description" type="text"
+                               value="{{ empoff.short_description }}">
+                        <input style="alignment: center;width: 400px" name="long_description" type="text"
+                               value="{{ empoff.long_description }}">
+                    </div>
+                    <div class="modal-footer">
+                        <button style="margin-left: 5px" type="button" class="btn btn-outline-secondary"
+                                data-toggle="modal"
+                                data-target="#offsModal" data-dismiss="modal">انصراف
+                        </button>
+
+                        <input type="submit" class="btn btn-outline-danger btn-block"
+                               value="تایید ویرایش">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endfor %}
+
+
+{% for empoff in employer.empoff_set.all %}
+
+    <div class="modal" id="rateOffModal{{ empoff.pk }}" style="direction: rtl" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div style="direction: rtl" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">امتیاز دهی به فرصت شغلی</h5>
+                </div>
+                <form method="post" action="{% url 'rate off' employer_id empoff.pk %}">
+                    {% csrf_token %}
+                    <div style="text-align: right" class="modal-body small">
+                        یکی عدد بین ۱ تا ۱۰ وارد کنید.
+                        <br>
+                        <input style="alignment: center;width: 400px" name="num" type="number" pattern="+(\d{1})$"
+                               value="">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button style="margin-left: 5px" type="button" class="btn btn-outline-secondary"
+                                data-toggle="modal"
+                                data-target="#offsModal" data-dismiss="modal">انصراف
+                        </button>
+
+                        <input type="submit" class="btn btn-outline-danger btn-block"
+                               value="ثبت امتیاز">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endfor %}
+
+
+<div class="modal" id="offModalAdd" style="direction: rtl" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div style="direction: rtl" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">اضافه کردن فرصت شغلی</h5>
+            </div>
+            <form method="post" action="{% url 'add off' employer_id %}">
+                {% csrf_token %}
+                <div style="text-align: right" class="modal-body small">
+                    لطفا فرصت شغلی جدید خود را وارد کنید
+                    <br>
+                    <input style="alignment: center;width: 400px" name="title" type="text"
+                               value="عنوان">
+                        <input style="alignment: center;width: 400px" name="position" type="text"
+                               value="محل">
+                        <input style="alignment: center;width: 400px" name="short_description" type="text"
+                               value="توضیح کوتاه">
+                        <input style="alignment: center;width: 400px" name="long_description" type="text"
+                               value="توضیح بلند">
+                </div>
+                <div class="modal-footer">
+                    <button style="margin-left: 5px" type="button" class="btn btn-outline-secondary"
+                            data-toggle="modal"
+                            data-target="#offsModal" data-dismiss="modal">انصراف
+                    </button>
+
+                    <input type="submit" class="btn btn-outline-danger btn-block"
+                           value="اضافه کردن">
+            </form>
+        </div>
+    </div>
+</div>
