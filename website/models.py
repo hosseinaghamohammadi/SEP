@@ -44,6 +44,8 @@ class EmpOff(models.Model):
     position = models.CharField(max_length=100, default="At witch position?")
     short_description = models.CharField(max_length=200, default="dummy")
     long_description = models.CharField(max_length=400, default="Enter your details.")
+    rate = models.FloatField(default=10.0)
+    vote_count = models.IntegerField(default=0)
 
 
 class Requirement(models.Model):

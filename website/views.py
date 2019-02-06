@@ -325,3 +325,13 @@ def add_off(request, employer_id):
                               short_description=request.POST['short_description'],
                               long_description=request.POST['long_description'])
     return HttpResponseRedirect(reverse('employer page', args=(employer_id,)))
+
+def rate_off(request, employer_id, empoff_pk):
+    empoff = get_object_or_404(EmpOff, pk=empoff_pk)
+    if request.method == "POST":
+        print(request.POST)
+        empoff.rate = ((empoff.rate * empoff.vote_count) + request.POST['num'])
+        empoff.vote_count = empoff.vote_count + 1
+        empoff.save()
+
+    return HttpResponseRedirect(reverse('employer page', args=(employer_id,)))

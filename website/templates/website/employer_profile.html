@@ -216,9 +216,9 @@
                                                 <div style="height: 200px" class="container1" style="">
                                                     <h2>{{ empoff.title }}</h2>
                                                     <p class="title">{{ empoff.position }}</p>
+                                                    <p data-toggle="modal" data-target="#rateOffModal{{ empoff.pk }}" class="small btn-outline-success">امتیاز: {{ empoff.rate }} از {{ empoff.vote_count }} نفر</p>
 
                                                     <p class="small">{{ empoff.short_description }}</p>
-
                                                 </div>
 
                                                 <button data-toggle="modal" data-target="#offDescModal{{ empoff.pk }}"
@@ -631,6 +631,42 @@
 
 
 {% endfor %}
+
+
+{% for empoff in employer.empoff_set.all %}
+
+    <div class="modal" id="rateOffModal{{ empoff.pk }}" style="direction: rtl" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div style="direction: rtl" class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">امتیاز دهی به فرصت شغلی</h5>
+                </div>
+                <form method="post" action="{% url 'rate off' employer_id empoff.pk %}">
+                    {% csrf_token %}
+                    <div style="text-align: right" class="modal-body small">
+                        یکی عدد بین ۱ تا ۱۰ وارد کنید.
+                        <br>
+                        <input style="alignment: center;width: 400px" name="num" type="number" pattern="+(\d{1})$"
+                               value="">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button style="margin-left: 5px" type="button" class="btn btn-outline-secondary"
+                                data-toggle="modal"
+                                data-target="#offsModal" data-dismiss="modal">انصراف
+                        </button>
+
+                        <input type="submit" class="btn btn-outline-danger btn-block"
+                               value="ثبت امتیاز">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endfor %}
+
 
 <div class="modal" id="offModalAdd" style="direction: rtl" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
