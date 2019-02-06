@@ -1,19 +1,10 @@
+from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
 
 
-class User(models.Model):
-    username = models.CharField(max_length=20, default="dummy", primary_key=True)
-    password = models.CharField(max_length=20, default="dummy")
-    mail = models.EmailField(default="fmansouri@gmail.com")
-
-    def __str__(self):
-        return self.username
-
-
 class Employee(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, default="dummy")
     family_name = models.CharField(max_length=200, default="dummy")
     studentID = models.CharField(max_length=8, default="95109253")
@@ -22,6 +13,7 @@ class Employee(models.Model):
     gender_choices = [("1", "MALE"), ("2", "FEMALE")]
     gender = models.CharField(max_length=9, choices=gender_choices, default="FEMALE")
     birth_date = models.DateField()
+    image = models.ImageField(upload_to="profiles" , blank= True, null= True)
 
     def __str__(self):
         return self.name + " " + self.family_name
@@ -36,7 +28,7 @@ class Phone(models.Model):
 
 
 class Employer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
     employer_name = models.CharField(max_length=200, default="dummy")
     employer_address = models.CharField(max_length=400, default="dummy")

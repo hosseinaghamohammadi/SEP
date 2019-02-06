@@ -1,8 +1,11 @@
 from django.urls import path
-
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
+    path('signup/',views.signup),
+    path('logout/',auth_views.LogoutView.as_view(template_name='website/global_homepage.html')),
+    path('login/',auth_views.LoginView.as_view(template_name='website/login.html'),name='login'),
     path('', views.global_homepage, name='global homepage'),
     path('SignInEmployee/', views.sign_in_employee, name='Employee Sign In'),
     path('SignInEmployer/', views.sign_in_employer, name='Employer Sign In'),
@@ -24,6 +27,11 @@ urlpatterns = [
     path('<int:employee_id>/employee/edit_experience/<int:experience_pk>', views.edit_experience,
          name='edit experience'),
     path('<int:employee_id>/employee/add_experience/', views.add_experience,
-         name='add experience')
+         name='add experience'),
+
+    path('employee/<str:employee_name>', views.employee_profile_temp, name='employee profile temp'),
+
+
+    path('searchPage/', views.search_page, name='search page'),
 
 ]

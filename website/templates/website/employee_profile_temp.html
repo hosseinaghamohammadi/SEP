@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -150,15 +153,25 @@
                 <div id="vii1" class="col-lg-3 col-md-4 col-sm-5 col-xs-12 user-profile-part float-right">
                     <div class="row" style="background-color: #eff9f6">
 
-                        <div class="col-md-12 col-sm-12 col-xs-12 user-image text-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdF-IXx4Uhtwl7niNPp4Tvz9-6aeCRensRVQLZLJd1ZBnWSx99Aw"
-                                 class="rounded-circle img-fluid img-thumbnail mx-auto" alt="user_img">
+                        <div class="col-md-12 col-sm-12 col-xs-12 user-image text-center" >
+                            <img src="/{{app_name}}{{ employee.image.url}}">
+
+
+
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 text-center follow">
+                            <img src= "/{{ app_name }}{{ employee.image.path }}" >
+                            <form action="{% url 'employee profile temp' 'saas' %}" method="post" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                <input type="file" name="myfile">
+                                <button type="submit">Upload</button>
+                              </form>
                             <ul class="list-group text-center">
                                 <li class="list-group-item border-success"><b>امین بهجتی</b></li>
+
                                 <li class="list-group-item border-success small">دانشجوی کارشناسی مهندسی
                                     کامپیوتر
+                                    {{ employee.name }}
                                 </li>
                                 <li class="list-group-item border-success small">amin.bahjati@gmail.com
                                 </li>

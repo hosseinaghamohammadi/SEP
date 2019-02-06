@@ -4,7 +4,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
-from weasyprint import HTML
+# from weasyprint import HTML
+from website.forms import SignUpForm
+from .models import User, Employer, Employee, Phone, EEExperience
+from .apps import WebsiteConfig
+from sep.settings import BASE_DIR
+from django.core.files.storage import FileSystemStorage
+from django.db.models import Q
 
 from website.models import EEExperience
 from .models import User, Employer, Employee, Phone
@@ -191,7 +197,9 @@ def sign_up(request, type, attr, page):
 
 
 def employee_temp(request):
-    return render(request, 'website/employee_profile_temp.html')
+    ee = get_object_or_404(Employee, name = "saas")
+    print(ee.family_name)
+    return render(request, 'website/employee_profile_temp.html',  {'app_name':WebsiteConfig.name,'employee': ee})
 
 
 def edit_profile(request):
@@ -199,7 +207,8 @@ def edit_profile(request):
 
 
 def global_homepage(request):
-    return render(request, 'website/global_homepage.html')
+    # return render(request, 'website/edit_profile.html')
+    return render(request, 'website/search_page.html', {})
 
 
 def employer_temp(request):
@@ -211,7 +220,7 @@ def employee_home(request):
 
 
 def employee(request, employee_id):
-    ee = get_object_or_404(Employee, id=employee_id)
+    ee = get_object_or_404(Employee, id = employee_id)
     return render(request, 'website/employee_profile.html', {'employee': ee, 'employee_id': employee_id})
 
 
@@ -249,6 +258,40 @@ def add_experience(request, employee_id):
     if request.method == "POST":
         EEExperience.objects.create(employee=get_object_or_404(Employee, id=employee_id), text=request.POST['text'])
     return HttpResponseRedirect(reverse('employee page', args=(employee_id,)))
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+
+            return redirect('/website')
+    else:
+        form = SignUpForm()
+    return render(request, 'website/signup.html', {'form': form})
+
+
+def employee_profile_temp(request, employee_name):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        print(myfile)
+        ee = get_object_or_404(Employee, name = employee_name)
+        # result = urllib.urlretrieve(image_url)
+        ee.image = myfile
+        print(ee.image.url)
+        print(ee.image)
+
+        ee.save()
+        return render(request, 'website/employee_profile_temp.html', {'app_name':WebsiteConfig.name,'employee': ee})
+    return render(request, 'website/employee_profile_temp.html')
+
+def search_page(request):
+    keyword = request.POST['search keyword']
+    employee_list = Employee.objects.filter(Q(eeskill__name__contains=keyword) | Q(eeeducation__text__contains=keyword)
+                            | Q(eeactivity__text__contains=keyword) | Q(eeexperience__text__contains=keyword)
+                            | Q(eeinterest__text__contains=keyword))
+    return render(request, 'website/search_page.html', {'employee_list': employee_list})
 
 
 def employer(request, employer_id):
