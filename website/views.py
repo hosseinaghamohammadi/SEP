@@ -12,7 +12,7 @@ from sep.settings import BASE_DIR
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 
-from website.models import EEExperience
+from website.models import EEExperience, EmpOff
 from .models import User, Employer, Employee, Phone
 
 
@@ -297,3 +297,31 @@ def search_page(request):
 def employer(request, employer_id):
     er = get_object_or_404(Employer, id = employer_id)
     return render(request, 'website/employer_profile.html', {'employer': er, 'employer_id': employer_id})
+
+
+def delete_off(request, employer_id, empoff_pk):
+    empoff = get_object_or_404(EmpOff, pk=empoff_pk)
+    empoff.delete()
+    return HttpResponseRedirect(reverse('employer page', args=(employer_id,)))
+
+
+def edit_off(request, employer_id, empoff_pk):
+    empoff = get_object_or_404(EmpOff, pk=empoff_pk)
+    if request.method == "POST":
+        print(request.POST)
+        empoff.title = request.POST['title']
+        empoff.position = request.POST['position']
+        empoff.short_description = request.POST['short_description']
+        empoff.long_description = request.POST['long_description']
+        empoff.save()
+
+    return HttpResponseRedirect(reverse('employer page', args=(employer_id,)))
+
+
+def add_off(request, employer_id):
+    if request.method == "POST":
+        EmpOff.objects.create(employer=get_object_or_404(Employer, id=employer_id),
+                              title=request.POST['title'], position=request.POST['position'],
+                              short_description=request.POST['short_description'],
+                              long_description=request.POST['long_description'])
+    return HttpResponseRedirect(reverse('employer page', args=(employer_id,)))
