@@ -15,6 +15,14 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# CLICKY_SITE_ID = '12345678'
+# CRAZY_EGG_ACCOUNT_NUMBER = '12345678'
+# CHARTBEAT_USER_ID = '12345'
+
+# IGNORE_USER_AGENTS = ["Wget/", "curl/"]
+
+# URI_WITH_GET_PARAMS=True
+
 ALLOWED_HOSTS = ['*']
 DEBUG = True
 # Quick-start development settings - unsuitable for production
@@ -39,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'visits',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +59,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# MIDDLEWARE_CLASSES = (
+#     "visits.middleware.CounterMiddleware",
+# )
 
 ROOT_URLCONF = 'sep.urls'
 
@@ -112,6 +125,11 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
+
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     #...
+#     "visits.context_processors.request_meta",
+# )
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
