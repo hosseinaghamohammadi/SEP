@@ -5,15 +5,18 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
 # from weasyprint import HTML
-from website.forms import SignUpForm
-from .models import User, Employer, Employee, Phone, EEExperience
+from .models import  Employer, Employee, Phone, EEExperience
+from django.views.generic import CreateView
+from weasyprint import HTML
+from .forms import *
+from .models import *
 from .apps import WebsiteConfig
 from sep.settings import BASE_DIR
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 
 from website.models import EEExperience, EmpOff
-from .models import User, Employer, Employee, Phone
+from .models import Employer, Employee, Phone
 
 
 def get_mail(request, type, stdid):
@@ -23,7 +26,7 @@ def get_mail(request, type, stdid):
 def verify_mail(request, type, stdid):
     mail = request.POST['mail']
 
-    user = User.objects.filter(mail=mail)
+    user = MyUser.objects.filter(mail=mail)
     if user.count() > 0:
         return render(request, 'website/getEmail.html', {
             'error_message': "This mail Already Exists".format(type),
@@ -52,7 +55,7 @@ def verify_form_employee(request, mail, stdid):
     phone = request.POST['phone number']
     address = request.POST['address']
     dateOfBirth = request.POST['date of birth']
-    user = User.objects.filter(username=username)
+    user = MyUser.objects.filter(username=username)
     if user.count() > 0:
         return render(request, 'website/fillFormEmployee.html', {
             'error_message': "Username Already Exists",
@@ -62,9 +65,9 @@ def verify_form_employee(request, mail, stdid):
     data_user = {"mail": mail, "username": username, "password": password}
     data_employee = {"address": address, "birth_date": dateOfBirth}
 
-    User.objects.create(**data_user)
+    MyUser.objects.create(**data_user)
 
-    user = User.objects.get(username=username)
+    user = MyUser.objects.get(username=username)
     data_employee["user"] = user
     Employee.objects.create(**data_employee)
 
@@ -90,7 +93,7 @@ def verify_form_employer(request, mail):
     companyAddress = request.POST['companyAddress']
     companyWebsite = request.POST.get('companyWebsite')
 
-    user = User.objects.filter(username=username)
+    user = MyUser.objects.filter(username=username)
 
     if user.count() > 0:
         return render(request, 'website/fillFormEmployee.html', {
@@ -103,7 +106,7 @@ def verify_form_employer(request, mail):
 
     # User.objects.create(mail = mail, username = username, password = password)
 
-    user = User(mail = mail, username = username, password = password)
+    user = MyUser(mail = mail, username = username, password = password)
     e = Employee(companyAddress = companyAddress, companyName = companyName, companyWebsite = companyWebsite)
     user.employer_set.add(e)
     e.user = user
@@ -154,7 +157,7 @@ def sign_in_employer(request):
 def sign_in(request, type, attr, page):
     username = request.POST['username']
     try:
-        user = get_object_or_404(User, pk=username)
+        user = get_object_or_404(MyUser, pk=username)
     except:
         return render(request, 'website/global_homepage.html', {
             'error_message': "{} with this username or password does not exists".format(type),
@@ -177,7 +180,7 @@ def sign_in(request, type, attr, page):
 def sign_up(request, type, attr, page):
     username = request.POST['username']
     try:
-        user = get_object_or_404(User, pk=username)
+        user = get_object_or_404(MyUser, pk=username)
     except:
         return render(request, 'website/global_homepage.html', {
             'error_message': "{} with this username or password does not exists".format(type),
@@ -207,8 +210,9 @@ def edit_profile(request):
 
 
 def global_homepage(request):
+    return render(request,'website/global_homepage.html')
     # return render(request, 'website/edit_profile.html')
-    return render(request, 'website/search_page.html', {})
+    # return render(request, 'website/search_page.html', {})
 
 
 def employer_temp(request):
@@ -297,6 +301,35 @@ def search_page(request):
 def employer(request, employer_id):
     er = get_object_or_404(Employer, id = employer_id)
     return render(request, 'website/employer_profile.html', {'employer': er, 'employer_id': employer_id})
+
+
+class EmployerSignUpView(CreateView):
+    model = MyUser
+    form_class = EmployerSignUpForm
+    template_name = 'website/signup.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'employer'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/')
+
+class EmployeeSignUpView(CreateView):
+    model = MyUser
+    form_class = EmployeeSignUpForm
+    template_name = 'website/signup.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'employee'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('/')
 
 
 def delete_off(request, employer_id, empoff_pk):

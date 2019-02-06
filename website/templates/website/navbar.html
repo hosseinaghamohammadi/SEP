@@ -33,6 +33,7 @@
                 <li class="dropdown-links"><a href="">صفحه سه</a></li>
             </ul>
             {% if request.user.is_authenticated %}
+                <p>you are logged in as a {% if requset.user.is_employee%}employee{%else%}emlpoyer{% endif %}</p>
                 <ul class="nav navbar-nav navbar-left" id="leftNavbar" style="text-align: left;">
                     <li class="log-out-button" style="" data-toggle="modal" data-target="#signIn">
                         <a href="/website/logout" style=""><span class="glyphicon glyphicon-log-in"></span>
@@ -47,9 +48,12 @@
                             style=""><span
                             class="glyphicon glyphicon-log-in"></span>
                         ورود</a></li>
-                    <li class="sign-up-button" style="" data-toggle="modal" data-target="#signUp"><a href="/website/signup" style=""
+                    <li class="sign-up-button" style="" data-toggle="modal" data-target="#signUp"><a href="/website/accounts/signup/employee/" style=""
                                                                                                      id="sign-up-id"><span
-                            class="glyphicon glyphicon-user"></span> ثبت نام</a></li>
+                            class="glyphicon glyphicon-user"></span> ثبت نام کارجو</a></li>
+                  <li class="sign-up-button" style="" data-toggle="modal" data-target="#signUp"><a href="/website/accounts/signup/employer/" style=""
+                                                                                                     id="sign-up-id"><span
+                            class="glyphicon glyphicon-user"></span> ثبت نام کارفرما</a></li>
 
                 </ul>
             {% endif %}
